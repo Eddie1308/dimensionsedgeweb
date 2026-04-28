@@ -1,0 +1,48 @@
+{
+  "site": {
+    "name": "Dimensions Edge",
+    "tagline": "25 years of low current and ICT excellence in Saudi Arabia"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "partners": "Partners",
+    "clients": "Clients",
+    "contact": "Contact"
+  },
+  "home": {
+    "heroEyebrow": "Low current · ICT · Building automation",
+    "heroTitle": "Engineered systems. Delivered with precision.",
+    "heroSubtitle": "Networking, AV, CCTV, access control, fire and building automation — designed, installed, and supported across the Kingdom.",
+    "ctaPrimary": "Explore our services",
+    "ctaSecondary": "View our work",
+    "servicesEyebrow": "What we do",
+    "servicesTitle": "Seven disciplines, one integrated team",
+    "servicesSubtitle": "From the cabling under your floor to the screens on your wall, we engineer every layer in-house."
+  },
+  "services": {
+    "networking": "Networking & Cabling",
+    "audioVisual": "Audio-Visual",
+    "cctv": "CCTV & Surveillance",
+    "accessControl": "Access Control",
+    "paSystem": "PA Systems",
+    "fireAlarm": "Fire Alarm",
+    "buildingAutomation": "Building Automation"
+  },
+  "footer": {
+    "tagline": "Saudi Arabia's trusted low current and ICT systems integrator since 2001.",
+    "explore": "Explore",
+    "services": "Services",
+    "company": "Company",
+    "address": "Riyadh, Saudi Arabia",
+    "rightsReserved": "Dimensions Edge. All rights reserved.",
+    "yearsOfExperience": "25 years engineering the systems that keep buildings running."
+  },
+  "common": {
+    "loading": "Loading…",
+    "readMore": "Read more",
+    "comingSoon": "Coming soon"
+  }
+}

@@ -1,0 +1,170 @@
+// Dimensions Edge — Prisma schema
+// Bilingual (EN/AR) content via parallel columns. Visibility toggles on
+// Project / Partner / Client allow content to live in DB but stay hidden
+// until manually enabled in admin.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Auth
+// ─────────────────────────────────────────────────────────────────────────
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String
+  name          String?
+  role          Role      @default(ADMIN)
+  lastLoginAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Services (Networking, AV/itc, CCTV, Access Control, PA, Fire Alarm, BACS)
+// ─────────────────────────────────────────────────────────────────────────
+
+model Service {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  titleEn       String
+  titleAr       String
+  summaryEn     String   @db.Text
+  summaryAr     String   @db.Text
+  descriptionEn String?  @db.LongText
+  descriptionAr String?  @db.LongText
+  iconKey       String?
+  coverImage    String?
+  order         Int      @default(0)
+  isVisible     Boolean  @default(true)
+  projects      Project[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([isVisible, order])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Projects (gallery)
+// ─────────────────────────────────────────────────────────────────────────
+
+model Project {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  titleEn       String
+  titleAr       String
+  summaryEn     String   @db.Text
+  summaryAr     String   @db.Text
+  descriptionEn String?  @db.LongText
+  descriptionAr String?  @db.LongText
+  clientName    String?
+  locationEn    String?
+  locationAr    String?
+  year          Int?
+  coverImage    String
+  isFeatured    Boolean  @default(false)
+  isVisible     Boolean  @default(false)
+  order         Int      @default(0)
+  serviceId     String?
+  service       Service? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  images        ProjectImage[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([isVisible, order])
+  @@index([serviceId])
+  @@index([isFeatured])
+}
+
+model ProjectImage {
+  id        String   @id @default(cuid())
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  url       String
+  altEn     String?
+  altAr     String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([projectId, order])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Partners (vendor / OEM relationships — Hikvision, itc, etc.)
+// ─────────────────────────────────────────────────────────────────────────
+
+model Partner {
+  id          String   @id @default(cuid())
+  nameEn      String
+  nameAr      String
+  logoUrl     String
+  websiteUrl  String?
+  order       Int      @default(0)
+  isVisible   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isVisible, order])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Clients (companies the firm has delivered for)
+// ─────────────────────────────────────────────────────────────────────────
+
+model Client {
+  id          String   @id @default(cuid())
+  nameEn      String
+  nameAr      String
+  logoUrl     String
+  industryEn  String?
+  industryAr  String?
+  order       Int      @default(0)
+  isVisible   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isVisible, order])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Site-wide settings (logo, hero bg, contact info, social links, SEO)
+// ─────────────────────────────────────────────────────────────────────────
+
+model SiteSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String   @db.Text
+  category  String?
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Contact form submissions
+// ─────────────────────────────────────────────────────────────────────────
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  company   String?
+  subject   String?
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([isRead, createdAt])
+}

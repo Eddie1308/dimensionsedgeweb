@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npm install *)",
+      "Bash(npm audit *)",
+      "Bash(grep -A2 \"node_modules/next$\")",
+      "Bash(npx prisma *)",
+      "Bash(npm run *)"
+    ]
+  }
+}
