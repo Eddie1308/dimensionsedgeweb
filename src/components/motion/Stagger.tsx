@@ -52,7 +52,7 @@ const itemVariants = (distance: number, duration: number) => ({
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
   },
 });
 

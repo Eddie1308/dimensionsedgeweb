@@ -6,7 +6,8 @@
       "Bash(npm audit *)",
       "Bash(grep -A2 \"node_modules/next$\")",
       "Bash(npx prisma *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(echo \"Exit code: $?\")"
     ]
   }
 }

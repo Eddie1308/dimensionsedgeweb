@@ -22,7 +22,44 @@
     "servicesTitle": "Seven disciplines, one integrated team",
     "servicesSubtitle": "From the cabling under your floor to the screens on your wall, we engineer every layer in-house."
   },
+  "about": {
+    "eyebrow": "About Dimensions Edge",
+    "title": "A quarter century engineering the systems behind Saudi business.",
+    "subtitle": "Founded in 2001, we have grown into one of the Kingdom's most relied-upon low-current and ICT integrators — large enough to deliver national rollouts, small enough that the engineer who designed your system is the one who answers your call.",
+    "storyHeading": "Our story",
+    "storyP1": "Dimensions Edge was founded with a simple thesis: buildings in the region were getting more sophisticated, but the people installing the systems behind the walls were not keeping pace. Our first customers were banks and ministries that needed structured cabling done properly, the first time.",
+    "storyP2": "Twenty-five years later, the brief is the same. The buildings are taller, the systems are smarter, the protocols are different — but the value is still the same: engineering work that holds up under audit, integrates without finger-pointing, and gets supported when something goes wrong at 2 a.m.",
+    "valuesHeading": "What we stand for",
+    "values": {
+      "engineeredTitle": "Engineered, not assembled",
+      "engineeredBody": "Every install starts with a design package — load calculations, cable schedules, single-line diagrams. We do not bolt parts together and hope.",
+      "ownedTitle": "We own the outcome",
+      "ownedBody": "We design it, we install it, we commission it, we maintain it. No subcontractor chain to point fingers down when something goes wrong.",
+      "documentedTitle": "Audit-ready by default",
+      "documentedBody": "Fluke certifications, as-built drawings, panel programs, and commissioning records — handed over before final payment, not after."
+    },
+    "byNumbers": "By the numbers",
+    "stats": {
+      "yearsLabel": "Years in business",
+      "yearsValue": "25+",
+      "projectsLabel": "Projects delivered",
+      "projectsValue": "1,000+",
+      "engineersLabel": "Engineers on staff",
+      "engineersValue": "120+",
+      "uptimeLabel": "Maintenance contract uptime",
+      "uptimeValue": "99.95%"
+    }
+  },
   "services": {
+    "eyebrow": "Capabilities",
+    "indexTitle": "Seven disciplines under one roof",
+    "indexSubtitle": "We engineer the low-voltage layer of your building — the cables, cameras, panels, and protocols that turn a structure into a system.",
+    "explore": "Explore service",
+    "capabilitiesHeading": "Capabilities",
+    "partnersHeading": "Vendor partnerships",
+    "talkHeading": "Specifying this for an upcoming project?",
+    "talkBody": "Send us the brief — we will come back with a design and a budget within five working days.",
+    "talkCta": "Start a conversation",
     "networking": "Networking & Cabling",
     "audioVisual": "Audio-Visual",
     "cctv": "CCTV & Surveillance",
@@ -30,6 +67,65 @@
     "paSystem": "PA Systems",
     "fireAlarm": "Fire Alarm",
     "buildingAutomation": "Building Automation"
+  },
+  "contact": {
+    "eyebrow": "Talk to us",
+    "title": "Tell us about your project.",
+    "subtitle": "Whether you have a specification ready or you are still scoping, send us a note and we will respond within one business day.",
+    "form": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone (optional)",
+      "company": "Company",
+      "subject": "Subject",
+      "message": "Tell us about the project, the site, and the timeline.",
+      "submit": "Send message",
+      "submitting": "Sending…",
+      "successTitle": "Thanks — we received your message.",
+      "successBody": "Our team will get back to you within one business day.",
+      "errorTitle": "Something went wrong.",
+      "errorBody": "Please try again, or email us directly at info@dimensionsedge.sa.",
+      "required": "Required"
+    },
+    "directLabel": "Or reach us directly",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "addressLabel": "Office",
+    "addressValue": "Riyadh, Saudi Arabia",
+    "hoursLabel": "Hours",
+    "hoursValue": "Sunday–Thursday · 8:00 – 17:00 AST"
+  },
+  "projects": {
+    "eyebrow": "Selected work",
+    "title": "Projects we have stood behind",
+    "subtitle": "Twenty-five years of delivery means we cannot show every job — but here is a sample of the work we are proud of and free to talk about.",
+    "noneTitle": "Project gallery is being curated",
+    "noneBody": "We are preparing case studies for publication. Get in touch and we will share relevant references for your sector.",
+    "viewProject": "View project",
+    "back": "All projects",
+    "yearLabel": "Year",
+    "locationLabel": "Location",
+    "clientLabel": "Client",
+    "serviceLabel": "Discipline",
+    "featured": "Featured"
+  },
+  "partners": {
+    "eyebrow": "Vendors and OEMs",
+    "title": "The brands we build with",
+    "subtitle": "Our long-standing partnerships let us bring tested, supportable equipment to the table — not whatever happens to be in stock.",
+    "visit": "Visit website"
+  },
+  "clients": {
+    "eyebrow": "Trusted by",
+    "title": "A quarter century of trust",
+    "subtitle": "From banks to ministries to the largest hospitality projects in the Kingdom — these are the organisations that have asked us back."
+  },
+  "comingSoon": {
+    "eyebrow": "Coming soon",
+    "title": "This page is on the way.",
+    "subtitle": "We are still curating the content for this section. In the meantime, explore our services or get in touch.",
+    "ctaServices": "View services",
+    "ctaContact": "Contact us"
   },
   "footer": {
     "tagline": "Saudi Arabia's trusted low current and ICT systems integrator since 2001.",
@@ -43,6 +139,7 @@
   "common": {
     "loading": "Loading…",
     "readMore": "Read more",
-    "comingSoon": "Coming soon"
+    "comingSoon": "Coming soon",
+    "backToServices": "All services"
   }
 }
