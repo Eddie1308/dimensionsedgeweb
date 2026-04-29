@@ -6,6 +6,10 @@ import { BrandedLogo } from "@/components/ui/BrandedLogo";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { getVisibleClients } from "@/lib/content/clients";
 
+// Re-render on every request so admin changes show up immediately
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function ClientsPage({
   params,
 }: {

@@ -8,6 +8,9 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { getVisibleProjects } from "@/lib/content/projects";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function ProjectsPage({
   params,
 }: {

@@ -25,6 +25,9 @@ import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { getVisiblePartners } from "@/lib/content/partners";
 import { getFeaturedProjects } from "@/lib/content/projects";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const serviceCards = [
   { slug: "networking", key: "networking", Icon: Network },
   { slug: "audio-visual", key: "audioVisual", Icon: Speaker },

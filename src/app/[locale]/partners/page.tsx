@@ -7,6 +7,9 @@ import { BrandedLogo } from "@/components/ui/BrandedLogo";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { getVisiblePartners } from "@/lib/content/partners";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function PartnersPage({
   params,
 }: {

@@ -10,19 +10,19 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { FadeUp } from "@/components/motion/FadeUp";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
-import {
-  getProjectBySlug,
-  getVisibleProjectSlugs,
-} from "@/lib/content/projects";
+import { getProjectBySlug } from "@/lib/content/projects";
 import { getService } from "@/data/services";
-import { routing } from "@/i18n/routing";
 
-export async function generateStaticParams() {
-  const slugs = await getVisibleProjectSlugs();
-  return routing.locales.flatMap((locale) =>
-    slugs.map((slug) => ({ locale, slug })),
-  );
-}
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+// Disabled: would require knowing projects at build time. Pages render on demand instead.
+// export async function generateStaticParams() {
+//   const slugs = await getVisibleProjectSlugs();
+//   return routing.locales.flatMap((locale) =>
+//     slugs.map((slug) => ({ locale, slug })),
+//   );
+// }
 
 export async function generateMetadata({
   params,

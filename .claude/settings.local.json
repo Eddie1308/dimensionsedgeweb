@@ -8,7 +8,28 @@
       "Bash(npx prisma *)",
       "Bash(npm run *)",
       "Bash(echo \"Exit code: $?\")",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(ssh -o StrictHostKeyChecking=no root@72.61.193.112 \"echo 'Connected successfully'\")",
+      "Read(//c/Users/mehre/.ssh/**)",
+      "Bash(ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N \"\" -q)",
+      "Bash(ssh -o StrictHostKeyChecking=no root@72.61.193.112 \"echo 'SSH working'\")",
+      "Bash(ssh root@72.61.193.112 \"curl -sm5 https://dimensionsedgeest.com/en | grep -c 'Years in Saudi Arabia'\")",
+      "Bash(ssh root@72.61.193.112 \"curl -sm5 https://dimensionsedgeest.com/en -D - 2>&1 | head -15\")",
+      "Bash(ssh root@72.61.193.112 \"curl -sk https://72.61.193.112/en -H 'Host: dimensionsedgeest.com' | grep -c 'Years in Saudi Arabia'\")",
+      "Bash(ssh root@72.61.193.112 \"curl -sm5 https://dimensionsedgeest.com/en -H 'Cache-Control: no-cache' -H 'Pragma: no-cache' | grep -c 'Years in Saudi Arabia'\")",
+      "Bash(ssh root@72.61.193.112 \"curl -sm5 https://dimensionsedgeest.com/en -H 'Cache-Control: no-cache' 2>&1 | head -3; curl -sm5 https://dimensionsedgeest.com/en -H 'Cache-Control: no-cache' | grep 'Years in Saudi\\\\|Engineered systems'\")",
+      "Bash(ssh root@72.61.193.112 \"curl -sm5 https://dimensionsedgeest.com/en -H 'Cache-Control: no-cache' | grep -o 'Years in Saudi Arabia\\\\|Engineered systems\\\\|heroEyebrow\\\\|why-us\\\\|whyTitle'\")",
+      "Bash(ssh root@72.61.193.112 \"grep -c 'Years in Saudi Arabia' /www/wwwroot/dimensionsedgeest.com/.next/standalone/.next/server/app/en.html\")",
+      "Bash(ssh root@72.61.193.112 \"curl -sm5 https://dimensionsedgeest.com/en -H 'Cache-Control: no-cache' -H 'Pragma: no-cache' -A 'Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36' | grep -c 'Years in Saudi Arabia'\")",
+      "Bash(ssh root@72.61.193.112 \"curl -sm5 https://dimensionsedgeest.com/en -H 'Cache-Control: no-cache' -H 'Pragma: no-cache' -A 'Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36' | grep -o 'since 2001\\\\|since 2005\\\\|heroEyebrow'\")",
+      "Bash(ssh root@72.61.193.112 \"sudo -u www /www/server/nodejs/v24.15.0/bin/pm2 delete dimensionsedge; sudo -u www /www/server/nodejs/v24.15.0/bin/pm2 start /www/wwwroot/dimensionsedgeest.com/.next/standalone/server.js --name dimensionsedge --cwd /www/wwwroot/dimensionsedgeest.com -- --port 3000; sleep 3; sudo -u www /www/server/nodejs/v24.15.0/bin/pm2 status\")",
+      "Bash(ssh root@72.61.193.112 \"sleep 2 && curl -sm5 http://127.0.0.1:3000/en | grep -o 'since 2005\\\\|since 2001\\\\|Years in Saudi Arabia' | head -3\")",
+      "Bash(ssh root@72.61.193.112 \"curl -sm5 http://127.0.0.1:80/en -H 'Host: dimensionsedgeest.com' | head -3\")",
+      "Bash(ssh root@72.61.193.112 \"curl -sm5 -L http://127.0.0.1:80/en -H 'Host: dimensionsedgeest.com' | grep -o 'since 2005\\\\|since 2001\\\\|Years in Saudi Arabia' | head -3\")",
+      "Bash(ssh root@72.61.193.112 *)",
+      "Bash(git commit *)"
     ]
   }
 }
