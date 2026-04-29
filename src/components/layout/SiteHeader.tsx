@@ -21,7 +21,7 @@ export function SiteHeader() {
             className="hidden items-center gap-1 lg:flex"
             aria-label="Primary"
           >
-            {primaryNav.slice(1).map((item) => (
+            {primaryNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}

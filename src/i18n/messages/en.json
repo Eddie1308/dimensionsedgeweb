@@ -20,7 +20,29 @@
     "ctaSecondary": "View our work",
     "servicesEyebrow": "What we do",
     "servicesTitle": "Seven disciplines, one integrated team",
-    "servicesSubtitle": "From the cabling under your floor to the screens on your wall, we engineer every layer in-house."
+    "servicesSubtitle": "From the cabling under your floor to the screens on your wall, we engineer every layer in-house.",
+    "whyEyebrow": "Why Dimensions Edge",
+    "whyTitle": "Engineering you can rely on long after handover.",
+    "whyBody": "We design, install, and maintain every system we deliver. No subcontractors to blame, no finger-pointing when something goes wrong — just one team that owns the outcome from brief to maintenance contract.",
+    "whyCta": "About the company",
+    "why": {
+      "engineeredTitle": "Engineered, not assembled",
+      "engineeredBody": "Every project starts with proper design documentation — load schedules, single-line diagrams, and system layouts before a single cable is pulled.",
+      "ownedTitle": "Single-team responsibility",
+      "ownedBody": "Design, installation, commissioning, and maintenance under one contract. One point of contact for the life of the system.",
+      "documentedTitle": "Audit-ready delivery",
+      "documentedBody": "Certification reports, as-built drawings, and commissioning records handed over before the final invoice.",
+      "responsiveTitle": "24/7 support",
+      "responsiveBody": "Maintenance contracts with committed response times. We answer when critical systems need attention — including weekends."
+    },
+    "projectsEyebrow": "Selected work",
+    "projectsTitle": "Projects we are proud to talk about",
+    "projectsCta": "View all projects",
+    "partnersEyebrow": "Trusted vendor partnerships",
+    "ctaHeading": "Ready to discuss your next project?",
+    "ctaBody": "Send us the brief and we will respond within one business day with a design proposal and budget estimate.",
+    "ctaContact": "Get in touch",
+    "ctaServices": "Browse our services"
   },
   "about": {
     "eyebrow": "About Dimensions Edge",
@@ -40,12 +62,12 @@
     },
     "byNumbers": "By the numbers",
     "stats": {
-      "yearsLabel": "Years in business",
-      "yearsValue": "25+",
+      "yearsLabel": "Years in Saudi Arabia",
+      "yearsValue": "20+",
       "projectsLabel": "Projects delivered",
       "projectsValue": "1,000+",
-      "engineersLabel": "Engineers on staff",
-      "engineersValue": "120+",
+      "clientsLabel": "Satisfied clients",
+      "clientsValue": "500+",
       "uptimeLabel": "Maintenance contract uptime",
       "uptimeValue": "99.95%"
     }
@@ -128,13 +150,13 @@
     "ctaContact": "Contact us"
   },
   "footer": {
-    "tagline": "Saudi Arabia's trusted low current and ICT systems integrator since 2001.",
+    "tagline": "Saudi Arabia's trusted low current and ICT systems integrator since 2005.",
     "explore": "Explore",
     "services": "Services",
     "company": "Company",
     "address": "Riyadh, Saudi Arabia",
     "rightsReserved": "Dimensions Edge. All rights reserved.",
-    "yearsOfExperience": "25 years engineering the systems that keep buildings running."
+    "yearsOfExperience": "Trusted low current and ICT integrator in Saudi Arabia since 2005."
   },
   "common": {
     "loading": "Loading…",

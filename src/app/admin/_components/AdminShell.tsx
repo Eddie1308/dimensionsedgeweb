@@ -6,7 +6,6 @@ import {
   FolderOpen,
   Handshake,
   Building2,
-  Wrench,
   Settings,
   Mail,
   Menu,
@@ -20,7 +19,6 @@ import { cn } from "@/lib/utils";
 const nav = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin/projects", label: "Projects", icon: FolderOpen },
-  { href: "/admin/services", label: "Services", icon: Wrench },
   { href: "/admin/partners", label: "Partners", icon: Handshake },
   { href: "/admin/clients", label: "Clients", icon: Building2 },
   { href: "/admin/messages", label: "Messages", icon: Mail },

@@ -12,7 +12,14 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 
-export const UPLOAD_BASE_DIR = "public/uploads";
+// Resolve upload dir from env variable (set this on the server to an absolute
+// path so the upload works regardless of where process.cwd() resolves under
+// Next.js standalone). Falls back to process.cwd()/public/uploads for local dev.
+const UPLOAD_ROOT = process.env.UPLOAD_DIR_ABS
+  ? path.resolve(process.env.UPLOAD_DIR_ABS)
+  : path.join(process.cwd(), "public", "uploads");
+
+export const UPLOAD_BASE_DIR = UPLOAD_ROOT;
 export const UPLOAD_PUBLIC_PREFIX = "/uploads";
 export const MAX_INPUT_BYTES = 10 * 1024 * 1024; // 10 MB
 const MAX_DIMENSION = 2400;
@@ -63,7 +70,7 @@ export async function processAndStoreImage(
   const mm = String(now.getUTCMonth() + 1).padStart(2, "0");
   const filename = `${crypto.randomBytes(8).toString("hex")}.webp`;
   const relDir = path.join(yyyy, mm);
-  const absDir = path.join(process.cwd(), UPLOAD_BASE_DIR, relDir);
+  const absDir = path.join(UPLOAD_BASE_DIR, relDir);
   await fs.mkdir(absDir, { recursive: true });
   await fs.writeFile(path.join(absDir, filename), data);
 

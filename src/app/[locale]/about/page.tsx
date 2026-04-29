@@ -19,7 +19,7 @@ export default async function AboutPage({
   const t = await getTranslations();
 
   const valueKeys = ["engineered", "owned", "documented"] as const;
-  const statKeys = ["years", "projects", "engineers", "uptime"] as const;
+  const statKeys = ["years", "projects", "clients", "uptime"] as const;
 
   return (
     <>

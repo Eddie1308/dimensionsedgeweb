@@ -3,6 +3,7 @@ import {
   Handshake,
   Building2,
   Mail,
+  Settings,
   ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
@@ -33,6 +34,12 @@ const cards = [
     description: "Submissions from the public contact form.",
     Icon: Mail,
   },
+  {
+    href: "/admin/settings",
+    title: "Site settings",
+    description: "Logo, hero background, contact info, and brand details.",
+    Icon: Settings,
+  },
 ];
 
 export default async function AdminDashboardPage() {
@@ -44,12 +51,11 @@ export default async function AdminDashboardPage() {
           Welcome back{session?.email ? `, ${session.email.split("@")[0]}` : ""}
         </h1>
         <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-          Pick a section below to manage public content. CRUD operations land
-          in Phase 6 — for now this dashboard verifies the auth flow.
+          Manage projects, partners, clients, and site-wide content from here.
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map(({ href, title, description, Icon }) => (
           <Link
             key={href}
@@ -71,15 +77,6 @@ export default async function AdminDashboardPage() {
             </span>
           </Link>
         ))}
-      </div>
-
-      <div className="rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">
-        <p className="font-semibold">Phase 5 (env-credential mode) is active.</p>
-        <p className="mt-1">
-          You signed in via the credentials in <code>.env</code>. Phase 6 will
-          swap this to a Prisma <code>User</code> lookup once MySQL is provisioned
-          on aaPanel. See the project todo list.
-        </p>
       </div>
     </div>
   );
