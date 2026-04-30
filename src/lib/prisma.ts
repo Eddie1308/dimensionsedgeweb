@@ -31,9 +31,8 @@ function createClient() {
 function getClient(): PrismaClient {
   if (globalForPrisma.prisma) return globalForPrisma.prisma;
   const client = createClient();
-  if (process.env.NODE_ENV !== "production") {
-    globalForPrisma.prisma = client;
-  }
+  // Cache in all environments — critical in production to avoid pool exhaustion
+  globalForPrisma.prisma = client;
   return client;
 }
 
