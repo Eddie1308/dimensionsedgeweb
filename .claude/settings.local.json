@@ -30,7 +30,8 @@
       "Bash(ssh root@72.61.193.112 \"curl -sm5 -L http://127.0.0.1:80/en -H 'Host: dimensionsedgeest.com' | grep -o 'since 2005\\\\|since 2001\\\\|Years in Saudi Arabia' | head -3\")",
       "Bash(ssh root@72.61.193.112 *)",
       "Bash(git commit *)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(ssh -o StrictHostKeyChecking=no root@72.61.193.112 \"curl -s -X POST https://dimensionsedgeest.com/api/contact -H 'Content-Type: application/json' -d '{\\\\\"name\\\\\":\\\\\"test\\\\\",\\\\\"email\\\\\":\\\\\"test@test.com\\\\\",\\\\\"message\\\\\":\\\\\"test message\\\\\"}' 2>&1\")"
     ]
   }
 }

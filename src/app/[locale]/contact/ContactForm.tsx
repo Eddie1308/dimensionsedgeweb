@@ -42,16 +42,19 @@ export function ContactForm() {
       return;
     }
 
+    const form = e.currentTarget;
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsed.data),
       });
-      if (!res.ok) throw new Error("Request failed");
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(JSON.stringify(data));
       setStatus("success");
-      e.currentTarget.reset();
-    } catch {
+      form.reset();
+    } catch (err) {
+      console.error("[contact form]", err);
       setStatus("error");
     }
   }
