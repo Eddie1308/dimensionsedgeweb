@@ -6,6 +6,7 @@ export type SiteSettings = {
   phone: string;
   address: string;
   addressAr: string;
+  logoUrl: string;
 };
 
 const DEFAULTS: SiteSettings = {
@@ -13,6 +14,7 @@ const DEFAULTS: SiteSettings = {
   phone: "+966 11 000 0000",
   address: "Riyadh, Saudi Arabia",
   addressAr: "الرياض، المملكة العربية السعودية",
+  logoUrl: "",
 };
 
 export async function getSiteSettings(): Promise<SiteSettings> {
@@ -21,7 +23,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     const rows = await prisma.siteSetting.findMany({
       where: {
         key: {
-          in: ["email", "phone", "address", "addressAr", "contactEmail", "contactPhone", "addressEn"],
+          in: ["email", "phone", "address", "addressAr", "contactEmail", "contactPhone", "addressEn", "logoUrl"],
         },
       },
     });
@@ -31,6 +33,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       phone: map.phone || map.contactPhone || DEFAULTS.phone,
       address: map.address || map.addressEn || DEFAULTS.address,
       addressAr: map.addressAr || DEFAULTS.addressAr,
+      logoUrl: map.logoUrl || DEFAULTS.logoUrl,
     };
   } catch {
     return DEFAULTS;

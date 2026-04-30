@@ -37,7 +37,7 @@ export function SiteFooterClient({
       <Container width="wide" className="py-16 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Logo variant="ink" />
+            <Logo variant="ink" logoUrl={settings.logoUrl} />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[var(--color-brand-200)]">
               {tFooter("tagline")}
             </p>
