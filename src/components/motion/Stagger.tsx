@@ -32,7 +32,7 @@ export function Stagger({
     <motion.div
       initial="hidden"
       {...(whenInView
-        ? { whileInView: "show", viewport: { once: true, amount: 0.2 } }
+        ? { whileInView: "show", viewport: { once: true, amount: 0 } }
         : { animate: "show" })}
       variants={variants}
       {...rest}
