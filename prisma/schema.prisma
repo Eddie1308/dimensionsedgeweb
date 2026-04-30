@@ -108,7 +108,8 @@ model Partner {
   id          String   @id @default(cuid())
   nameEn      String
   nameAr      String
-  logoUrl     String
+  logoText    String?
+  logoUrl     String?
   websiteUrl  String?
   order       Int      @default(0)
   isVisible   Boolean  @default(false)
@@ -126,7 +127,8 @@ model Client {
   id          String   @id @default(cuid())
   nameEn      String
   nameAr      String
-  logoUrl     String
+  logoText    String?
+  logoUrl     String?
   industryEn  String?
   industryAr  String?
   order       Int      @default(0)

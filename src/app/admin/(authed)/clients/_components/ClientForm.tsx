@@ -11,6 +11,7 @@ export type ClientFormValue = {
   id?: string;
   nameEn: string;
   nameAr: string;
+  logoText: string;
   logoUrl: string;
   industryEn: string;
   industryAr: string;
@@ -90,6 +91,9 @@ export function ClientForm({ initial }: { initial: ClientFormValue }) {
           </Field>
           <Field label="Name (AR)" htmlFor="nameAr" required>
             <input id="nameAr" required dir="rtl" value={v.nameAr} onChange={(e) => update("nameAr", e.target.value)} className={inputStyles} />
+          </Field>
+          <Field label="Logo abbreviation" htmlFor="logoText" hint="Short text shown when no logo image (e.g. SNB, MOI)">
+            <input id="logoText" value={v.logoText} onChange={(e) => update("logoText", e.target.value)} className={inputStyles} maxLength={20} />
           </Field>
           <Field label="Industry (EN)" htmlFor="industryEn">
             <input id="industryEn" value={v.industryEn} onChange={(e) => update("industryEn", e.target.value)} className={inputStyles} />

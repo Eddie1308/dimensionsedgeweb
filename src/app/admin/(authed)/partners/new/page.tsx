@@ -9,6 +9,7 @@ export default function NewPartnerPage() {
         initial={{
           nameEn: "",
           nameAr: "",
+          logoText: "",
           logoUrl: "",
           websiteUrl: "",
           isVisible: false,

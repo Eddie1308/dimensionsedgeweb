@@ -11,6 +11,7 @@ export type PartnerFormValue = {
   id?: string;
   nameEn: string;
   nameAr: string;
+  logoText: string;
   logoUrl: string;
   websiteUrl: string;
   isVisible: boolean;
@@ -90,7 +91,10 @@ export function PartnerForm({ initial }: { initial: PartnerFormValue }) {
           <Field label="Name (AR)" htmlFor="nameAr" required>
             <input id="nameAr" required dir="rtl" value={v.nameAr} onChange={(e) => update("nameAr", e.target.value)} className={inputStyles} />
           </Field>
-          <Field label="Website URL" htmlFor="websiteUrl" span={2} hint="Optional. Must include https://">
+          <Field label="Logo abbreviation" htmlFor="logoText" hint="Short text shown when no logo image (e.g. HIK, CISCO)">
+            <input id="logoText" value={v.logoText} onChange={(e) => update("logoText", e.target.value)} className={inputStyles} maxLength={20} />
+          </Field>
+          <Field label="Website URL" htmlFor="websiteUrl" hint="Optional. Must include https://">
             <input id="websiteUrl" type="url" value={v.websiteUrl} onChange={(e) => update("websiteUrl", e.target.value)} className={inputStyles} />
           </Field>
         </FormGrid>

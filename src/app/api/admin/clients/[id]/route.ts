@@ -24,7 +24,8 @@ export async function PATCH(
       data: {
         ...(d.nameEn !== undefined && { nameEn: d.nameEn }),
         ...(d.nameAr !== undefined && { nameAr: d.nameAr }),
-        ...(d.logoUrl !== undefined && { logoUrl: d.logoUrl }),
+        ...(d.logoText !== undefined && { logoText: d.logoText || null }),
+        ...(d.logoUrl !== undefined && { logoUrl: d.logoUrl || null }),
         ...(d.industryEn !== undefined && { industryEn: d.industryEn || null }),
         ...(d.industryAr !== undefined && { industryAr: d.industryAr || null }),
         ...(d.isVisible !== undefined && { isVisible: !!d.isVisible }),

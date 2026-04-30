@@ -9,6 +9,7 @@ export default function NewClientPage() {
         initial={{
           nameEn: "",
           nameAr: "",
+          logoText: "",
           logoUrl: "",
           industryEn: "",
           industryAr: "",

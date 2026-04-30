@@ -19,7 +19,8 @@ export async function POST(request: Request) {
       data: {
         nameEn: d.nameEn,
         nameAr: d.nameAr,
-        logoUrl: d.logoUrl,
+        logoText: d.logoText || null,
+        logoUrl: d.logoUrl || null,
         websiteUrl: d.websiteUrl || null,
         isVisible: !!d.isVisible,
         order: d.order ?? 0,

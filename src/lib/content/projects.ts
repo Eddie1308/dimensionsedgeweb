@@ -1,57 +1,102 @@
-// Content adapter for Projects.
-//
-// Phase 4 ships with USE_DB=false so the public site works against the static
-// mock catalogue (src/data/projects.ts) without MySQL provisioned.
-// Once the DB is live (USER CRITICAL todo: aaPanel setup + migrate + seed):
-//   1) Flip USE_DB to true
-//   2) Add real projects via the admin UI (Phase 6) or seed
-//   3) Toggle isVisible per project
-// All consumer pages (server components) call these functions; nothing else
-// changes.
+import { type Project, type ProjectImage } from "@/data/projects";
 
-import {
-  projects as mockProjects,
-  type Project,
-} from "@/data/projects";
+const USE_DB = true;
 
-const USE_DB = false;
+type DbProject = {
+  slug: string;
+  titleEn: string;
+  titleAr: string;
+  summaryEn: string;
+  summaryAr: string;
+  descriptionEn: string | null;
+  descriptionAr: string | null;
+  clientName: string | null;
+  locationEn: string | null;
+  locationAr: string | null;
+  year: number | null;
+  coverImage: string;
+  isFeatured: boolean;
+  isVisible: boolean;
+  order: number;
+  service: { slug: string } | null;
+  images: { url: string; altEn: string | null; altAr: string | null; order: number }[];
+};
+
+function rowToProject(row: DbProject): Project {
+  return {
+    slug: row.slug,
+    titleEn: row.titleEn,
+    titleAr: row.titleAr,
+    summaryEn: row.summaryEn,
+    summaryAr: row.summaryAr,
+    descriptionEn: row.descriptionEn ?? "",
+    descriptionAr: row.descriptionAr ?? "",
+    clientName: row.clientName ?? "",
+    locationEn: row.locationEn ?? "",
+    locationAr: row.locationAr ?? "",
+    year: row.year ?? new Date().getFullYear(),
+    coverImage: row.coverImage,
+    serviceSlug: (row.service?.slug ?? "networking") as Project["serviceSlug"],
+    isFeatured: row.isFeatured,
+    isVisible: row.isVisible,
+    order: row.order,
+    images: row.images.map(
+      (img): ProjectImage => ({ url: img.url, altEn: img.altEn ?? undefined, altAr: img.altAr ?? undefined }),
+    ),
+  };
+}
+
+const projectInclude = {
+  service: { select: { slug: true } },
+  images: { orderBy: { order: "asc" as const } },
+};
 
 export async function getVisibleProjects(): Promise<Project[]> {
   if (!USE_DB) {
-    return mockProjects
-      .filter((p) => p.isVisible)
-      .sort((a, b) => a.order - b.order);
+    const { projects: mockProjects } = await import("@/data/projects");
+    return mockProjects.filter((p) => p.isVisible).sort((a, b) => a.order - b.order);
   }
-  // Phase-4-swap target — Prisma equivalent (kept inert until USE_DB=true):
-  //   const { prisma } = await import("@/lib/prisma");
-  //   const rows = await prisma.project.findMany({
-  //     where: { isVisible: true },
-  //     orderBy: { order: "asc" },
-  //     include: { images: { orderBy: { order: "asc" } } },
-  //   });
-  //   return rows.map(rowToProject);
-  return [];
+  const { prisma } = await import("@/lib/prisma");
+  const rows = await prisma.project.findMany({
+    where: { isVisible: true },
+    orderBy: { order: "asc" },
+    include: projectInclude,
+  });
+  return rows.map(rowToProject);
 }
 
 export async function getFeaturedProjects(limit = 4): Promise<Project[]> {
-  const visible = await getVisibleProjects();
-  return visible.filter((p) => p.isFeatured).slice(0, limit);
+  if (!USE_DB) {
+    const { projects: mockProjects } = await import("@/data/projects");
+    return mockProjects
+      .filter((p) => p.isVisible && p.isFeatured)
+      .sort((a, b) => a.order - b.order)
+      .slice(0, limit);
+  }
+  const { prisma } = await import("@/lib/prisma");
+  const rows = await prisma.project.findMany({
+    where: { isVisible: true, isFeatured: true },
+    orderBy: { order: "asc" },
+    take: limit,
+    include: projectInclude,
+  });
+  return rows.map(rowToProject);
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
   if (!USE_DB) {
+    const { projects: mockProjects } = await import("@/data/projects");
     const project = mockProjects.find((p) => p.slug === slug);
     if (!project || !project.isVisible) return null;
     return project;
   }
-  // Prisma equivalent:
-  //   const row = await prisma.project.findUnique({
-  //     where: { slug },
-  //     include: { images: { orderBy: { order: "asc" } } },
-  //   });
-  //   if (!row || !row.isVisible) return null;
-  //   return rowToProject(row);
-  return null;
+  const { prisma } = await import("@/lib/prisma");
+  const row = await prisma.project.findUnique({
+    where: { slug },
+    include: projectInclude,
+  });
+  if (!row || !row.isVisible) return null;
+  return rowToProject(row);
 }
 
 export async function getVisibleProjectSlugs(): Promise<string[]> {

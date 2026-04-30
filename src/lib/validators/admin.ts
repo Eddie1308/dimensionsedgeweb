@@ -25,7 +25,8 @@ export const projectSchema = z.object({
 export const partnerSchema = z.object({
   nameEn: trimmedString(120).min(1),
   nameAr: trimmedString(120).min(1),
-  logoUrl: trimmedString(500).min(1, "Logo URL is required"),
+  logoText: trimmedString(20).optional().or(z.literal("")),
+  logoUrl: trimmedString(500).optional().or(z.literal("")),
   websiteUrl: trimmedString(500).url().optional().or(z.literal("")),
   isVisible: z.coerce.boolean().optional().default(false),
   order: z.coerce.number().int().optional().default(0),
@@ -34,7 +35,8 @@ export const partnerSchema = z.object({
 export const clientSchema = z.object({
   nameEn: trimmedString(120).min(1),
   nameAr: trimmedString(120).min(1),
-  logoUrl: trimmedString(500).min(1, "Logo URL is required"),
+  logoText: trimmedString(20).optional().or(z.literal("")),
+  logoUrl: trimmedString(500).optional().or(z.literal("")),
   industryEn: trimmedString(120).optional().or(z.literal("")),
   industryAr: trimmedString(120).optional().or(z.literal("")),
   isVisible: z.coerce.boolean().optional().default(false),
