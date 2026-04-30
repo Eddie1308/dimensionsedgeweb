@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { prisma } from "@/lib/prisma";
 
 export type SiteSettings = {
@@ -15,6 +16,7 @@ const DEFAULTS: SiteSettings = {
 };
 
 export async function getSiteSettings(): Promise<SiteSettings> {
+  noStore();
   try {
     const rows = await prisma.siteSetting.findMany({
       where: { key: { in: ["email", "phone", "address", "addressAr"] } },
