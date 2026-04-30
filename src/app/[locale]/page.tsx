@@ -64,11 +64,11 @@ export default async function HomePage({
       {/* ── Hero ── */}
       <Section
         tone="default"
-        className="relative pt-20 lg:pt-28 pb-16 lg:pb-20 overflow-hidden"
+        className="relative pt-20 lg:pt-28 pb-16 lg:pb-20 overflow-hidden min-h-[60vh] lg:min-h-[70vh] flex items-center"
         style={settings.heroBackground ? {
           backgroundImage: `url("${settings.heroBackground}")`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center top",
           backgroundRepeat: "no-repeat",
         } : undefined}
       >

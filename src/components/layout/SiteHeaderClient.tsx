@@ -12,7 +12,7 @@ export function SiteHeaderClient({ logoUrl, siteName }: { logoUrl?: string; site
   const t = useTranslations("nav");
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-surface)]/85 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-surface)] lg:bg-[var(--color-surface)]/85 lg:backdrop-blur-md">
       <Container width="wide">
         <div className="flex h-16 items-center justify-between gap-6 lg:h-20">
           <Link href="/" className="-mx-2 rounded-md px-2 py-1">
