@@ -39,7 +39,7 @@ async function sendNotificationEmail(data: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      sender: { name: "Dimensions Edge Website", email: "a93818001@smtp-brevo.com" },
+      sender: { name: "Dimensions Edge Website", email: process.env.NOTIFY_EMAIL || "info@dimensionsedgeest.com" },
       to: [{ email: notifyEmail }],
       replyTo: { email: data.email, name: data.name },
       subject,
