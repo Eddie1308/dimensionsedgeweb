@@ -26,9 +26,29 @@ model User {
   passwordHash  String
   name          String?
   role          Role      @default(ADMIN)
+  isSuperUser   Boolean   @default(false)
   lastLoginAt   DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+}
+
+enum VerificationAction {
+  CREATE_USER
+  DELETE_USER
+  RESET_PASSWORD
+}
+
+model VerificationCode {
+  id            String             @id @default(cuid())
+  code          String
+  action        VerificationAction
+  payload       String?            @db.Text
+  targetUserId  String?
+  expiresAt     DateTime
+  usedAt        DateTime?
+  createdAt     DateTime           @default(now())
+
+  @@index([code, action])
 }
 
 // ─────────────────────────────────────────────────────────────────────────

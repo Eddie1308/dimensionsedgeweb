@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { LogOut, User } from "lucide-react";
+import { LogOut, KeyRound } from "lucide-react";
+import Link from "next/link";
 import type { AdminSession } from "@/lib/auth/session";
 import { cn } from "@/lib/utils";
 
@@ -49,6 +50,14 @@ export function AdminUserMenu({ session }: { session: AdminSession }) {
               Role: {session.role}
             </p>
           </div>
+          <Link
+            href="/admin/profile"
+            onClick={() => setOpen(false)}
+            className="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-[var(--color-ink)] transition-colors hover:bg-[var(--color-surface-muted)]"
+          >
+            <KeyRound className="h-4 w-4" />
+            Change password
+          </Link>
           <button
             type="button"
             onClick={signOut}
