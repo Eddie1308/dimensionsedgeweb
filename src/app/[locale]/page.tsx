@@ -64,27 +64,31 @@ export default async function HomePage({
       {/* ── Hero ── */}
       <Section
         tone="default"
-        className="relative pt-20 lg:pt-28 pb-16 lg:pb-20"
+        className="relative pt-20 lg:pt-28 pb-16 lg:pb-20 overflow-hidden"
         style={settings.heroBackground ? {
           backgroundImage: `url("${settings.heroBackground}")`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center 30%",
         } : undefined}
       >
-        <Container>
+        {/* Dark overlay for readability when hero background is set */}
+        {settings.heroBackground && (
+          <div className="absolute inset-0 bg-[var(--color-brand-950)]/60 pointer-events-none" />
+        )}
+        <Container className="relative z-10">
           <div className="mx-auto max-w-3xl text-center">
             <FadeIn>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-brand-600)]">
+              <p className={`mb-4 text-xs font-semibold uppercase tracking-[0.2em] ${settings.heroBackground ? "text-[var(--color-accent-400)]" : "text-[var(--color-brand-600)]"}`}>
                 {t("home.heroEyebrow")}
               </p>
             </FadeIn>
             <FadeUp delay={0.1}>
-              <h1 className="text-display text-[var(--color-brand-950)]">
+              <h1 className={`text-display ${settings.heroBackground ? "text-white" : "text-[var(--color-brand-950)]"}`}>
                 {t("home.heroTitle")}
               </h1>
             </FadeUp>
             <FadeUp delay={0.2}>
-              <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-ink-muted)] sm:text-xl">
+              <p className={`mx-auto mt-6 max-w-2xl text-lg sm:text-xl ${settings.heroBackground ? "text-[var(--color-brand-200)]" : "text-[var(--color-ink-muted)]"}`}>
                 {t("home.heroSubtitle")}
               </p>
             </FadeUp>

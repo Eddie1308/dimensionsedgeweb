@@ -32,7 +32,7 @@ export function Logo({
     return (
       <div className={cn("flex items-center", className)}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoUrl} alt={name} className="h-10 max-w-[160px] object-contain" />
+        <img src={logoUrl} alt={name} className="h-14 max-w-[200px] object-contain" />
       </div>
     );
   }
