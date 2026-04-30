@@ -64,17 +64,20 @@ export default async function HomePage({
       {/* ── Hero ── */}
       <Section
         tone="default"
-        className="relative pt-20 lg:pt-28 pb-16 lg:pb-20 overflow-hidden min-h-[60vh] lg:min-h-[70vh] flex items-center"
-        style={settings.heroBackground ? {
-          backgroundImage: `url("${settings.heroBackground}")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-          backgroundRepeat: "no-repeat",
-        } : undefined}
+        className="relative pt-20 lg:pt-28 pb-16 lg:pb-20 overflow-hidden"
       >
-        {/* Dark overlay for readability when hero background is set */}
         {settings.heroBackground && (
-          <div className="absolute inset-0 bg-[var(--color-brand-950)]/60 pointer-events-none" />
+          <>
+            {/* Background image — uses an img tag so object-fit works properly on mobile */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={settings.heroBackground}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-[var(--color-brand-950)]/60 pointer-events-none" />
+          </>
         )}
         <Container className="relative z-10">
           <div className="mx-auto max-w-3xl text-center">
