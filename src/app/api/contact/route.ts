@@ -10,26 +10,16 @@ async function sendNotificationEmail(data: {
   subject?: string | null;
   message: string;
 }) {
-  const smtpHost = process.env.SMTP_HOST;
-  const smtpUser = process.env.SMTP_USER;
-  const smtpPass = process.env.SMTP_PASS;
+  const apiKey = process.env.BREVO_API_KEY;
   const notifyEmail = process.env.NOTIFY_EMAIL;
 
-  if (!smtpHost || !smtpUser || !smtpPass || !notifyEmail) return;
-
-  const nodemailer = await import("nodemailer");
-  const transporter = nodemailer.default.createTransport({
-    host: smtpHost,
-    port: Number(process.env.SMTP_PORT || 587),
-    secure: process.env.SMTP_SECURE === "true",
-    auth: { user: smtpUser, pass: smtpPass },
-  });
+  if (!apiKey || !notifyEmail) return;
 
   const subject = data.subject
     ? `New enquiry: ${data.subject}`
     : `New contact form submission from ${data.name}`;
 
-  const html = `
+  const htmlContent = `
     <h2>New Contact Form Submission</h2>
     <table style="border-collapse:collapse;width:100%;max-width:600px">
       <tr><td style="padding:8px;font-weight:bold;background:#f5f5f5">Name</td><td style="padding:8px">${data.name}</td></tr>
@@ -42,13 +32,25 @@ async function sendNotificationEmail(data: {
     <p style="margin-top:16px;color:#666">Reply directly to this email to respond to the enquiry.</p>
   `;
 
-  await transporter.sendMail({
-    from: `"Dimensions Edge Website" <${smtpUser}>`,
-    to: notifyEmail,
-    replyTo: data.email,
-    subject,
-    html,
+  const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      "api-key": apiKey,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      sender: { name: "Dimensions Edge Website", email: "a93818001@smtp-brevo.com" },
+      to: [{ email: notifyEmail }],
+      replyTo: { email: data.email, name: data.name },
+      subject,
+      htmlContent,
+    }),
   });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Brevo API error: ${err}`);
+  }
 }
 
 export async function POST(request: Request) {
@@ -75,7 +77,7 @@ export async function POST(request: Request) {
       },
     });
 
-    // Send email notification (non-blocking — don't fail the request if email fails)
+    // Non-blocking — don't fail the request if email fails
     sendNotificationEmail({ name, email, phone, company, subject, message }).catch((err) =>
       console.error("[contact] email send failed:", err),
     );
