@@ -4,7 +4,6 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { BrandedLogo } from "@/components/ui/BrandedLogo";
-import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { getVisiblePartners } from "@/lib/content/partners";
 
 export const dynamic = "force-dynamic";
@@ -31,18 +30,13 @@ export default async function PartnersPage({
 
       <Section tone="default">
         <Container>
-          <Stagger
-            stagger={0.04}
-            className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
-          >
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {partners.map((partner) => {
               const name = isAr ? partner.nameAr : partner.nameEn;
               const inner = (
                 <div className="group flex h-full flex-col items-center gap-3">
                   <BrandedLogo text={partner.logoText} name={name} />
-                  <p className="text-sm font-medium text-[var(--color-ink-muted)]">
-                    {name}
-                  </p>
+                  <p className="text-sm font-medium text-[var(--color-ink-muted)]">{name}</p>
                   {partner.websiteUrl && (
                     <span className="inline-flex items-center gap-1 text-xs text-[var(--color-brand-600)] opacity-0 transition-opacity group-hover:opacity-100">
                       {t("partners.visit")}
@@ -53,23 +47,18 @@ export default async function PartnersPage({
               );
 
               return (
-                <StaggerItem key={partner.nameEn}>
+                <div key={partner.nameEn}>
                   {partner.websiteUrl ? (
-                    <a
-                      href={partner.websiteUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
+                    <a href={partner.websiteUrl} target="_blank" rel="noopener noreferrer" className="block">
                       {inner}
                     </a>
                   ) : (
                     <div>{inner}</div>
                   )}
-                </StaggerItem>
+                </div>
               );
             })}
-          </Stagger>
+          </div>
         </Container>
       </Section>
     </>

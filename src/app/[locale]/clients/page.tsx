@@ -3,10 +3,8 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { BrandedLogo } from "@/components/ui/BrandedLogo";
-import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { getVisibleClients } from "@/lib/content/clients";
 
-// Re-render on every request so admin changes show up immediately
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -31,30 +29,25 @@ export default async function ClientsPage({
 
       <Section tone="default">
         <Container>
-          <Stagger
-            stagger={0.03}
-            className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5"
-          >
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {clients.map((client) => {
               const name = isAr ? client.nameAr : client.nameEn;
               const industry = isAr ? client.industryAr : client.industryEn;
               return (
-                <StaggerItem key={client.nameEn}>
-                  <div className="flex h-full flex-col items-center gap-2 text-center">
-                    <BrandedLogo text={client.logoText} name={name} />
-                    <p className="text-sm font-medium text-[var(--color-ink)]">
-                      {name}
+                <div key={client.nameEn} className="flex h-full flex-col items-center gap-2 text-center">
+                  <BrandedLogo text={client.logoText} name={name} />
+                  <p className="text-sm font-medium text-[var(--color-ink)]">
+                    {name}
+                  </p>
+                  {industry && (
+                    <p className="text-xs text-[var(--color-ink-subtle)]">
+                      {industry}
                     </p>
-                    {industry && (
-                      <p className="text-xs text-[var(--color-ink-subtle)]">
-                        {industry}
-                      </p>
-                    )}
-                  </div>
-                </StaggerItem>
+                  )}
+                </div>
               );
             })}
-          </Stagger>
+          </div>
         </Container>
       </Section>
     </>
