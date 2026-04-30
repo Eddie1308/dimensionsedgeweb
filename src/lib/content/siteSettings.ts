@@ -7,6 +7,10 @@ export type SiteSettings = {
   address: string;
   addressAr: string;
   logoUrl: string;
+  faviconUrl: string;
+  siteNameEn: string;
+  siteNameAr: string;
+  heroBackground: string;
 };
 
 const DEFAULTS: SiteSettings = {
@@ -15,6 +19,10 @@ const DEFAULTS: SiteSettings = {
   address: "Riyadh, Saudi Arabia",
   addressAr: "الرياض، المملكة العربية السعودية",
   logoUrl: "",
+  faviconUrl: "",
+  siteNameEn: "Dimensions Edge",
+  siteNameAr: "ديمنشنز إيدج",
+  heroBackground: "",
 };
 
 export async function getSiteSettings(): Promise<SiteSettings> {
@@ -23,7 +31,13 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     const rows = await prisma.siteSetting.findMany({
       where: {
         key: {
-          in: ["email", "phone", "address", "addressAr", "contactEmail", "contactPhone", "addressEn", "logoUrl"],
+          in: [
+            "email", "phone", "address", "addressAr",
+            "contactEmail", "contactPhone", "addressEn",
+            "logoUrl", "faviconUrl",
+            "siteNameEn", "siteNameAr",
+            "heroBackground",
+          ],
         },
       },
     });
@@ -34,6 +48,10 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       address: map.address || map.addressEn || DEFAULTS.address,
       addressAr: map.addressAr || DEFAULTS.addressAr,
       logoUrl: map.logoUrl || DEFAULTS.logoUrl,
+      faviconUrl: map.faviconUrl || DEFAULTS.faviconUrl,
+      siteNameEn: map.siteNameEn || DEFAULTS.siteNameEn,
+      siteNameAr: map.siteNameAr || DEFAULTS.siteNameAr,
+      heroBackground: map.heroBackground || DEFAULTS.heroBackground,
     };
   } catch {
     return DEFAULTS;

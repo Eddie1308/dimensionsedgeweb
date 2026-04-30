@@ -24,6 +24,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { getVisiblePartners } from "@/lib/content/partners";
 import { getFeaturedProjects } from "@/lib/content/projects";
+import { getSiteSettings } from "@/lib/content/siteSettings";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -50,9 +51,10 @@ export default async function HomePage({
   const t = await getTranslations();
   const isAr = locale === "ar";
 
-  const [featuredProjects, partners] = await Promise.all([
+  const [featuredProjects, partners, settings] = await Promise.all([
     getFeaturedProjects(3),
     getVisiblePartners(),
+    getSiteSettings(),
   ]);
 
   const whyUsKeys = ["engineered", "owned", "documented", "responsive"] as const;
@@ -60,7 +62,15 @@ export default async function HomePage({
   return (
     <>
       {/* ── Hero ── */}
-      <Section tone="default" className="pt-20 lg:pt-28 pb-16 lg:pb-20">
+      <Section
+        tone="default"
+        className="relative pt-20 lg:pt-28 pb-16 lg:pb-20"
+        style={settings.heroBackground ? {
+          backgroundImage: `url("${settings.heroBackground}")`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        } : undefined}
+      >
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <FadeIn>

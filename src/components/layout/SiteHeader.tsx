@@ -1,7 +1,8 @@
 import { getSiteSettings } from "@/lib/content/siteSettings";
 import { SiteHeaderClient } from "./SiteHeaderClient";
 
-export async function SiteHeader() {
+export async function SiteHeader({ locale }: { locale?: string }) {
   const settings = await getSiteSettings();
-  return <SiteHeaderClient logoUrl={settings.logoUrl} />;
+  const siteName = locale === "ar" ? settings.siteNameAr : settings.siteNameEn;
+  return <SiteHeaderClient logoUrl={settings.logoUrl} siteName={siteName} />;
 }

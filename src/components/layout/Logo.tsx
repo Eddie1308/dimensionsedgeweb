@@ -5,12 +5,15 @@ export function Logo({
   className,
   variant = "default",
   logoUrl,
+  siteName,
 }: {
   className?: string;
   variant?: "default" | "ink";
   logoUrl?: string;
+  siteName?: string;
 }) {
   const t = useTranslations("site");
+  const name = siteName || t("name");
 
   const markColor =
     variant === "ink"
@@ -29,7 +32,7 @@ export function Logo({
     return (
       <div className={cn("flex items-center", className)}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoUrl} alt={t("name")} className="h-10 max-w-[160px] object-contain" />
+        <img src={logoUrl} alt={name} className="h-10 max-w-[160px] object-contain" />
       </div>
     );
   }
@@ -46,7 +49,7 @@ export function Logo({
         <path d="M19 16h6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className={accent} />
       </svg>
       <span className={cn("text-base font-bold tracking-tight sm:text-lg", wordColor)}>
-        {t("name")}
+        {name}
       </span>
     </div>
   );

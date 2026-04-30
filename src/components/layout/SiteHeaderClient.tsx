@@ -8,7 +8,7 @@ import { LocaleSwitcher } from "./LocaleSwitcher";
 import { MobileNav } from "./MobileNav";
 import { primaryNav } from "./nav-config";
 
-export function SiteHeaderClient({ logoUrl }: { logoUrl?: string }) {
+export function SiteHeaderClient({ logoUrl, siteName }: { logoUrl?: string; siteName?: string }) {
   const t = useTranslations("nav");
 
   return (
@@ -16,7 +16,7 @@ export function SiteHeaderClient({ logoUrl }: { logoUrl?: string }) {
       <Container width="wide">
         <div className="flex h-16 items-center justify-between gap-6 lg:h-20">
           <Link href="/" className="-mx-2 rounded-md px-2 py-1">
-            <Logo logoUrl={logoUrl} />
+            <Logo logoUrl={logoUrl} siteName={siteName} />
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">

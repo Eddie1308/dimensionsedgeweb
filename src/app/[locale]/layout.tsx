@@ -6,6 +6,7 @@ import { routing, localeDirection, type Locale } from "@/i18n/routing";
 import { inter, tajawal } from "@/lib/fonts";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { getSiteSettings } from "@/lib/content/siteSettings";
 import { cn } from "@/lib/utils";
 import "../globals.css";
 
@@ -38,6 +39,8 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const dir = localeDirection[locale as Locale];
+  const settings = await getSiteSettings();
+  const siteName = locale === "ar" ? settings.siteNameAr : settings.siteNameEn;
 
   return (
     <html
@@ -46,10 +49,18 @@ export default async function LocaleLayout({
       suppressHydrationWarning
       className={cn(inter.variable, tajawal.variable)}
     >
+      <head>
+        {settings.faviconUrl && (
+          <link rel="icon" href={settings.faviconUrl} />
+        )}
+        {siteName && siteName !== "Dimensions Edge" && (
+          <title>{siteName}</title>
+        )}
+      </head>
       <body className="min-h-screen bg-[var(--color-surface)] text-[var(--color-ink)] antialiased">
         <NextIntlClientProvider>
           <div className="flex min-h-screen flex-col">
-            <SiteHeader />
+            <SiteHeader locale={locale} />
             <main className="flex-1">{children}</main>
             <SiteFooter locale={locale} />
           </div>

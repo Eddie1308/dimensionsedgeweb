@@ -14,15 +14,18 @@ export function Section({
   className,
   tone = "default",
   id,
+  style,
 }: {
   children: React.ReactNode;
   className?: string;
   tone?: Tone;
   id?: string;
+  style?: React.CSSProperties;
 }) {
   return (
     <section
       id={id}
+      style={style}
       className={cn(
         "py-20 sm:py-24 lg:py-32",
         toneClasses[tone],
