@@ -2,7 +2,8 @@
 export type Partner = {
   nameEn: string;
   nameAr: string;
-  logoText: string; // shown in the branded SVG card until real logos arrive
+  logoText: string;
+  logoUrl?: string;
   websiteUrl?: string;
   order: number;
   isVisible: boolean;

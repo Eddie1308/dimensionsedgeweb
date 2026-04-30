@@ -15,6 +15,7 @@ function rowToPartner(row: {
     nameEn: row.nameEn,
     nameAr: row.nameAr,
     logoText: row.logoText ?? row.nameEn.slice(0, 4).toUpperCase(),
+    logoUrl: row.logoUrl ?? undefined,
     websiteUrl: row.websiteUrl ?? undefined,
     order: row.order,
     isVisible: row.isVisible,

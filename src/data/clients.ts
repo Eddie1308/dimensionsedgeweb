@@ -3,6 +3,7 @@ export type Client = {
   nameEn: string;
   nameAr: string;
   logoText: string;
+  logoUrl?: string;
   industryEn?: string;
   industryAr?: string;
   order: number;

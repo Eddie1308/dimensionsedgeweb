@@ -35,7 +35,7 @@ export default async function ClientsPage({
               const industry = isAr ? client.industryAr : client.industryEn;
               return (
                 <div key={client.nameEn} className="flex h-full flex-col items-center gap-2 text-center">
-                  <BrandedLogo text={client.logoText} name={name} />
+                  <BrandedLogo text={client.logoText} logoUrl={client.logoUrl} name={name} />
                   <p className="text-sm font-medium text-[var(--color-ink)]">
                     {name}
                   </p>

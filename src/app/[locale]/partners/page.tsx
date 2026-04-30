@@ -35,7 +35,7 @@ export default async function PartnersPage({
               const name = isAr ? partner.nameAr : partner.nameEn;
               const inner = (
                 <div className="group flex h-full flex-col items-center gap-3">
-                  <BrandedLogo text={partner.logoText} name={name} />
+                  <BrandedLogo text={partner.logoText} logoUrl={partner.logoUrl} name={name} />
                   <p className="text-sm font-medium text-[var(--color-ink-muted)]">{name}</p>
                   {partner.websiteUrl && (
                     <span className="inline-flex items-center gap-1 text-xs text-[var(--color-brand-600)] opacity-0 transition-opacity group-hover:opacity-100">

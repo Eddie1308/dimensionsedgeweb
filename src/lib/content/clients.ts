@@ -16,6 +16,7 @@ function rowToClient(row: {
     nameEn: row.nameEn,
     nameAr: row.nameAr,
     logoText: row.logoText ?? row.nameEn.slice(0, 4).toUpperCase(),
+    logoUrl: row.logoUrl ?? undefined,
     industryEn: row.industryEn ?? undefined,
     industryAr: row.industryAr ?? undefined,
     order: row.order,
