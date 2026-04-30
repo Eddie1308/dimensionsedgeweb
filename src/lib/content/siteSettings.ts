@@ -19,13 +19,17 @@ export async function getSiteSettings(): Promise<SiteSettings> {
   noStore();
   try {
     const rows = await prisma.siteSetting.findMany({
-      where: { key: { in: ["email", "phone", "address", "addressAr"] } },
+      where: {
+        key: {
+          in: ["email", "phone", "address", "addressAr", "contactEmail", "contactPhone", "addressEn"],
+        },
+      },
     });
     const map = Object.fromEntries(rows.map((r) => [r.key, r.value]));
     return {
-      email: map.email || DEFAULTS.email,
-      phone: map.phone || DEFAULTS.phone,
-      address: map.address || DEFAULTS.address,
+      email: map.email || map.contactEmail || DEFAULTS.email,
+      phone: map.phone || map.contactPhone || DEFAULTS.phone,
+      address: map.address || map.addressEn || DEFAULTS.address,
       addressAr: map.addressAr || DEFAULTS.addressAr,
     };
   } catch {

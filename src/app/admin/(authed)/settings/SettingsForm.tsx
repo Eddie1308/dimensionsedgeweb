@@ -2,17 +2,20 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { Save, Loader2, Plus } from "lucide-react";
+import { Save, Loader2, Plus, ImagePlus } from "lucide-react";
 import { Field, FormSection, inputStyles } from "@/components/admin/Field";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 type Setting = { key: string; value: string; category: string | null };
 
+const IMAGE_KEYS = ["logoUrl", "faviconUrl", "heroBackground"];
+
 export function SettingsForm({ settings }: { settings: Setting[] }) {
   const router = useRouter();
   const [items, setItems] = useState<Setting[]>(settings);
   const [savingKey, setSavingKey] = useState<string | null>(null);
+  const [uploadingKey, setUploadingKey] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [newKey, setNewKey] = useState("");
   const [newCategory, setNewCategory] = useState("");
@@ -25,6 +28,33 @@ export function SettingsForm({ settings }: { settings: Setting[] }) {
 
   function updateLocal(key: string, value: string) {
     setItems((prev) => prev.map((s) => (s.key === key ? { ...s, value } : s)));
+  }
+
+  async function uploadImage(settingKey: string, file: File) {
+    setUploadingKey(settingKey);
+    setError(null);
+    const fd = new FormData();
+    fd.append("file", file);
+    try {
+      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      const data = (await res.json()) as { url?: string; error?: string };
+      if (!res.ok || !data.url) throw new Error(data.error ?? "Upload failed");
+      updateLocal(settingKey, data.url);
+      // Auto-save after upload
+      const setting = items.find((s) => s.key === settingKey);
+      if (setting) {
+        await fetch("/api/admin/settings", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...setting, value: data.url }),
+        });
+        router.refresh();
+      }
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Upload failed");
+    } finally {
+      setUploadingKey(null);
+    }
   }
 
   async function saveOne(setting: Setting, e: FormEvent) {
@@ -83,20 +113,36 @@ export function SettingsForm({ settings }: { settings: Setting[] }) {
           <FormSection key={category} title={category[0].toUpperCase() + category.slice(1)}>
             <div className="space-y-4">
               {list.map((s) => {
-                const isLong = s.value.length > 80 || s.key.toLowerCase().includes("address");
+                const isImageKey = IMAGE_KEYS.includes(s.key);
+                const isLong = !isImageKey && (s.value.length > 80 || s.key.toLowerCase().includes("address"));
                 return (
-                  <form key={s.key} onSubmit={(e) => saveOne(s, e)} className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-end">
-                    <Field label={s.key} htmlFor={s.key}>
-                      {isLong ? (
-                        <textarea id={s.key} rows={3} value={s.value} onChange={(e) => updateLocal(s.key, e.target.value)} className={cn(inputStyles, "resize-y")} />
-                      ) : (
-                        <input id={s.key} value={s.value} onChange={(e) => updateLocal(s.key, e.target.value)} className={inputStyles} />
-                      )}
-                    </Field>
-                    <Button type="submit" size="sm" disabled={savingKey === s.key} className="h-9">
-                      {savingKey === s.key ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Save className="h-3.5 w-3.5" />}
-                      Save
-                    </Button>
+                  <form key={s.key} onSubmit={(e) => saveOne(s, e)} className="space-y-2">
+                    <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-end">
+                      <Field label={s.key} htmlFor={s.key}>
+                        {isLong ? (
+                          <textarea id={s.key} rows={3} value={s.value} onChange={(e) => updateLocal(s.key, e.target.value)} className={cn(inputStyles, "resize-y")} />
+                        ) : (
+                          <input id={s.key} value={s.value} onChange={(e) => updateLocal(s.key, e.target.value)} className={inputStyles} />
+                        )}
+                      </Field>
+                      <Button type="submit" size="sm" disabled={savingKey === s.key} className="h-9">
+                        {savingKey === s.key ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Save className="h-3.5 w-3.5" />}
+                        Save
+                      </Button>
+                    </div>
+                    {isImageKey && (
+                      <div className="flex items-center gap-3">
+                        {s.value && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={s.value} alt="" className="h-10 w-16 rounded border border-[var(--color-border)] object-contain bg-white p-1" />
+                        )}
+                        <label className={cn("inline-flex cursor-pointer items-center gap-2 rounded-md border border-[var(--color-border)] px-3 py-1.5 text-xs font-medium text-[var(--color-ink-muted)] hover:border-[var(--color-brand-300)] hover:text-[var(--color-ink)]", uploadingKey === s.key && "opacity-60 pointer-events-none")}>
+                          {uploadingKey === s.key ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <ImagePlus className="h-3.5 w-3.5" />}
+                          {uploadingKey === s.key ? "Uploading…" : "Upload image"}
+                          <input type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadImage(s.key, f); }} />
+                        </label>
+                      </div>
+                    )}
                   </form>
                 );
               })}
