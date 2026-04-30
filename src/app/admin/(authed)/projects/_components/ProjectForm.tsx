@@ -80,8 +80,8 @@ export function ProjectForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(value),
       });
-      const data = (await res.json().catch(() => ({}))) as { error?: string };
-      if (!res.ok) throw new Error(data.error ?? "Save failed");
+      const data = (await res.json().catch(() => ({}))) as { error?: string; issues?: { message: string }[] };
+      if (!res.ok) throw new Error(data.issues ? data.issues.map(i => i.message).join(", ") : data.error ?? "Save failed");
       router.push("/admin/projects");
       router.refresh();
     } catch (e) {
@@ -117,7 +117,7 @@ export function ProjectForm({
               id="slug"
               required
               value={value.slug}
-              onChange={(e) => update("slug", e.target.value)}
+              onChange={(e) => update("slug", e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-"))}
               className={inputStyles}
             />
           </Field>
