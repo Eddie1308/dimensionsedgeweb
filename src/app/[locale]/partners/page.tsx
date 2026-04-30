@@ -32,7 +32,6 @@ export default async function PartnersPage({
       <Section tone="default">
         <Container>
           <Stagger
-            whenInView
             stagger={0.04}
             className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
           >

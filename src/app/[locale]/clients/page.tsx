@@ -32,7 +32,6 @@ export default async function ClientsPage({
       <Section tone="default">
         <Container>
           <Stagger
-            whenInView
             stagger={0.03}
             className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5"
           >
