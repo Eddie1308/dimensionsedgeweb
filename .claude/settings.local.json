@@ -29,7 +29,8 @@
       "Bash(ssh root@72.61.193.112 \"curl -sm5 http://127.0.0.1:80/en -H 'Host: dimensionsedgeest.com' | head -3\")",
       "Bash(ssh root@72.61.193.112 \"curl -sm5 -L http://127.0.0.1:80/en -H 'Host: dimensionsedgeest.com' | grep -o 'since 2005\\\\|since 2001\\\\|Years in Saudi Arabia' | head -3\")",
       "Bash(ssh root@72.61.193.112 *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(npx tsc *)"
     ]
   }
 }

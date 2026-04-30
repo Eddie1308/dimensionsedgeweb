@@ -45,7 +45,7 @@ export function MobileNav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-[var(--color-brand-950)]/40 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-[var(--color-brand-950)]/60"
             onClick={() => setOpen(false)}
           >
             <motion.div
@@ -53,7 +53,7 @@ export function MobileNav() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute inset-y-0 end-0 w-[min(360px,85%)] bg-[var(--color-surface)] shadow-2xl rtl:[transform:translateX(-100%)]"
+              className="absolute inset-y-0 end-0 w-[min(360px,85%)] bg-white shadow-2xl rtl:[transform:translateX(-100%)]"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between border-b border-[var(--color-border)] px-6 py-4">

@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 import { contactSubmissionSchema } from "@/lib/validators/contact";
 
-// Phase 3 stub: validates the submission and returns success without persisting.
-// Phase 6 replaces this with a Prisma write to ContactSubmission + (optionally)
-// an email notification.
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -15,16 +13,22 @@ export async function POST(request: Request) {
       );
     }
 
-    if (process.env.NODE_ENV !== "production") {
-      console.info("[contact] received submission:", {
-        name: parsed.data.name,
-        email: parsed.data.email,
-        subject: parsed.data.subject,
-      });
-    }
+    const { name, email, phone, company, subject, message } = parsed.data;
+
+    await prisma.contactSubmission.create({
+      data: {
+        name,
+        email,
+        phone: phone || null,
+        company: company || null,
+        subject: subject || null,
+        message,
+      },
+    });
 
     return NextResponse.json({ ok: true }, { status: 200 });
-  } catch {
+  } catch (e) {
+    console.error("[contact] error:", e);
     return NextResponse.json({ error: "Bad request" }, { status: 400 });
   }
 }

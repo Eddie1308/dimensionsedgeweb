@@ -2,10 +2,12 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { Save, Trash2, ImagePlus, Loader2 } from "lucide-react";
+import { Save, Trash2, ImagePlus, Loader2, X } from "lucide-react";
 import { Field, FormGrid, FormSection, inputStyles } from "@/components/admin/Field";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+
+type GalleryImage = { id: string; url: string; altEn?: string | null; altAr?: string | null; order: number };
 
 export type ProjectFormValue = {
   id?: string;
@@ -34,14 +36,19 @@ type Status = "idle" | "saving" | "uploading" | "deleting";
 export function ProjectForm({
   initial,
   services,
+  initialGallery = [],
 }: {
   initial: ProjectFormValue;
   services: ServiceOption[];
+  initialGallery?: GalleryImage[];
 }) {
   const router = useRouter();
   const [value, setValue] = useState<ProjectFormValue>(initial);
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [gallery, setGallery] = useState<GalleryImage[]>(initialGallery);
+  const [uploadingGallery, setUploadingGallery] = useState(false);
+  const [galleryError, setGalleryError] = useState<string | null>(null);
   const isEdit = Boolean(initial.id);
 
   function update<K extends keyof ProjectFormValue>(key: K, v: ProjectFormValue[K]) {
@@ -66,6 +73,45 @@ export function ProjectForm({
       setError(e instanceof Error ? e.message : "Upload failed");
     } finally {
       setStatus("idle");
+    }
+  }
+
+  async function uploadGalleryImage(file: File) {
+    if (!initial.id) return;
+    setUploadingGallery(true);
+    setGalleryError(null);
+    const fd = new FormData();
+    fd.append("file", file);
+    try {
+      const uploadRes = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      const uploadData = (await uploadRes.json()) as { url?: string; error?: string };
+      if (!uploadRes.ok || !uploadData.url) throw new Error(uploadData.error ?? "Upload failed");
+      const addRes = await fetch(`/api/admin/projects/${initial.id}/images`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: uploadData.url, order: gallery.length }),
+      });
+      const addData = (await addRes.json()) as { ok?: boolean; id?: string; error?: string };
+      if (!addRes.ok) throw new Error(addData.error ?? "Failed to save image");
+      setGallery((prev) => [...prev, { id: addData.id!, url: uploadData.url!, order: prev.length }]);
+    } catch (e) {
+      setGalleryError(e instanceof Error ? e.message : "Upload failed");
+    } finally {
+      setUploadingGallery(false);
+    }
+  }
+
+  async function deleteGalleryImage(imageId: string) {
+    if (!initial.id) return;
+    try {
+      await fetch(`/api/admin/projects/${initial.id}/images`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imageId }),
+      });
+      setGallery((prev) => prev.filter((img) => img.id !== imageId));
+    } catch {
+      setGalleryError("Failed to delete image");
     }
   }
 
@@ -216,6 +262,40 @@ export function ProjectForm({
           </label>
         )}
       </FormSection>
+
+      {isEdit && (
+        <FormSection title="Gallery images" description="Additional reference photos shown on the project detail page.">
+          <div className="space-y-4">
+            {gallery.length > 0 && (
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                {gallery.map((img) => (
+                  <div key={img.id} className="group relative aspect-[4/3] overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-sunken)]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={img.url} alt="" className="h-full w-full object-cover" />
+                    <button
+                      type="button"
+                      onClick={() => deleteGalleryImage(img.id)}
+                      className="absolute right-1.5 top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-red-600 text-white opacity-0 transition-opacity group-hover:opacity-100"
+                    >
+                      <X className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+            {galleryError && <p className="text-sm text-red-600">{galleryError}</p>}
+            <label className={cn(
+              "flex w-full cursor-pointer items-center gap-3 rounded-lg border-2 border-dashed border-[var(--color-border)]",
+              "bg-[var(--color-surface-muted)] px-6 py-6 text-sm hover:border-[var(--color-brand-300)]",
+              uploadingGallery && "opacity-60 pointer-events-none",
+            )}>
+              {uploadingGallery ? <Loader2 className="h-5 w-5 animate-spin" /> : <ImagePlus className="h-5 w-5" />}
+              <span>{uploadingGallery ? "Uploading…" : "Add gallery image"}</span>
+              <input type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadGalleryImage(f); e.currentTarget.value = ""; }} />
+            </label>
+          </div>
+        </FormSection>
+      )}
 
       <FormSection title="Visibility">
         <div className="flex flex-col gap-4">

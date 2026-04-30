@@ -4,7 +4,11 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Reveal } from "@/components/motion/Reveal";
+import { getSiteSettings } from "@/lib/content/siteSettings";
 import { ContactForm } from "./ContactForm";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function ContactPage({
   params,
@@ -14,6 +18,9 @@ export default async function ContactPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations();
+  const isAr = locale === "ar";
+  const settings = await getSiteSettings();
+  const address = isAr ? settings.addressAr : settings.address;
 
   return (
     <>
@@ -44,23 +51,23 @@ export default async function ContactPage({
                       label={t("contact.emailLabel")}
                     >
                       <a
-                        href="mailto:info@dimensionsedge.sa"
+                        href={`mailto:${settings.email}`}
                         className="text-[var(--color-brand-700)] hover:text-[var(--color-brand-800)]"
                       >
-                        info@dimensionsedge.sa
+                        {settings.email}
                       </a>
                     </ContactItem>
                     <ContactItem
                       icon={<Phone className="h-5 w-5" />}
                       label={t("contact.phoneLabel")}
                     >
-                      <span dir="ltr">+966 11 000 0000</span>
+                      <span dir="ltr">{settings.phone}</span>
                     </ContactItem>
                     <ContactItem
                       icon={<MapPin className="h-5 w-5" />}
                       label={t("contact.addressLabel")}
                     >
-                      {t("contact.addressValue")}
+                      {address}
                     </ContactItem>
                     <ContactItem
                       icon={<Clock className="h-5 w-5" />}

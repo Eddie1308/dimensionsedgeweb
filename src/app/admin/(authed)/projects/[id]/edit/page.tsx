@@ -14,7 +14,10 @@ export default async function EditProjectPage({
 
   const result = await withAdminDb(async () => {
     const [project, services] = await Promise.all([
-      prisma.project.findUnique({ where: { id } }),
+      prisma.project.findUnique({
+        where: { id },
+        include: { images: { orderBy: { order: "asc" } } },
+      }),
       prisma.service.findMany({
         orderBy: { order: "asc" },
         select: { id: true, titleEn: true },
@@ -58,7 +61,17 @@ export default async function EditProjectPage({
   return (
     <>
       <AdminPageHeader title={`Edit · ${project.titleEn}`} backHref="/admin/projects" />
-      <ProjectForm initial={initial} services={services} />
+      <ProjectForm
+        initial={initial}
+        services={services}
+        initialGallery={project.images.map((img) => ({
+          id: img.id,
+          url: img.url,
+          altEn: img.altEn,
+          altAr: img.altAr,
+          order: img.order,
+        }))}
+      />
     </>
   );
 }

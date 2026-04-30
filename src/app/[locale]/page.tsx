@@ -68,7 +68,8 @@ export default async function HomePage({
         style={settings.heroBackground ? {
           backgroundImage: `url("${settings.heroBackground}")`,
           backgroundSize: "cover",
-          backgroundPosition: "center 30%",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         } : undefined}
       >
         {/* Dark overlay for readability when hero background is set */}
