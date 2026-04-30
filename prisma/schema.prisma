@@ -72,7 +72,7 @@ model Project {
   locationEn    String?
   locationAr    String?
   year          Int?
-  coverImage    String
+  coverImage    String   @default("")
   isFeatured    Boolean  @default(false)
   isVisible     Boolean  @default(false)
   order         Int      @default(0)

@@ -37,7 +37,7 @@ export async function POST(request: Request) {
         locationEn: data.locationEn || null,
         locationAr: data.locationAr || null,
         year: data.year ?? null,
-        coverImage: data.coverImage,
+        coverImage: data.coverImage || "",
         serviceId: data.serviceId || null,
         isFeatured: !!data.isFeatured,
         isVisible: !!data.isVisible,
