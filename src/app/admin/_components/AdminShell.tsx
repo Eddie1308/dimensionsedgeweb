@@ -11,6 +11,7 @@ import {
   Menu,
   X,
   Users,
+  UserSquare2,
 } from "lucide-react";
 import { AdminUserMenu } from "./AdminUserMenu";
 import { AdminNavLink } from "./AdminNavLink";
@@ -23,6 +24,7 @@ const nav = [
   { href: "/admin/partners", label: "Partners", icon: Handshake },
   { href: "/admin/clients", label: "Clients", icon: Building2 },
   { href: "/admin/messages", label: "Messages", icon: Mail },
+  { href: "/admin/team", label: "Team", icon: UserSquare2 },
   { href: "/admin/users", label: "Users", icon: Users },
   { href: "/admin/settings", label: "Site settings", icon: Settings },
 ];

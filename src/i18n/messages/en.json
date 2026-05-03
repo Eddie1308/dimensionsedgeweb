@@ -45,12 +45,21 @@
     "ctaServices": "Browse our services"
   },
   "about": {
-    "eyebrow": "About Dimensions Edge",
+    "eyebrow": "Who We Are",
     "title": "A quarter century engineering the systems behind Saudi business.",
-    "subtitle": "Founded in 2001, we have grown into one of the Kingdom's most relied-upon low-current and ICT integrators — large enough to deliver national rollouts, small enough that the engineer who designed your system is the one who answers your call.",
+    "subtitle": "Founded in 2005, we have grown into one of the Kingdom's most relied-upon low-current and ICT integrators.",
+    "heroImageAlt": "Dimensions Edge engineering team at work",
+    "whoHeading": "Who we are",
+    "whoP1": "Dimensions Edge is a Saudi-based systems integrator specialising in low-current and ICT infrastructure. For over 20 years, we have designed, installed, and maintained the technology layers that keep the Kingdom's most demanding buildings running — from government ministries and financial institutions to hospitals, hotels, and large-scale developments.",
+    "whoP2": "We were founded on a simple conviction: that the gap between specification and delivery should not exist. Too many projects were handed over with punch lists, finger-pointing between subcontractors, and systems that worked in the demo but not in the building. We set out to change that — and we have built every process and every team around that commitment.",
+    "whoP3": "Today, Dimensions Edge is a trusted partner of some of the most recognised names in Saudi Arabia. We bring the same engineering discipline to a 10-room office fitout as we do to a national infrastructure rollout. Our clients come back because the systems hold, the documentation is clean, and the phone is answered.",
     "storyHeading": "Our story",
     "storyP1": "Dimensions Edge was founded with a simple thesis: buildings in the region were getting more sophisticated, but the people installing the systems behind the walls were not keeping pace. Our first customers were banks and ministries that needed structured cabling done properly, the first time.",
     "storyP2": "Twenty-five years later, the brief is the same. The buildings are taller, the systems are smarter, the protocols are different — but the value is still the same: engineering work that holds up under audit, integrates without finger-pointing, and gets supported when something goes wrong at 2 a.m.",
+    "missionHeading": "Our mission",
+    "missionBody": "To engineer low-current and ICT systems that perform reliably long after handover — backed by documentation, supported by our own team, and designed to grow with our clients' needs.",
+    "visionHeading": "Our vision",
+    "visionBody": "To be the Kingdom's most trusted systems integrator, recognised not just for technical excellence but for the integrity and discipline we bring to every project we touch.",
     "valuesHeading": "What we stand for",
     "values": {
       "engineeredTitle": "Engineered, not assembled",
@@ -60,6 +69,10 @@
       "documentedTitle": "Audit-ready by default",
       "documentedBody": "Fluke certifications, as-built drawings, panel programs, and commissioning records — handed over before final payment, not after."
     },
+    "teamHeading": "Our team",
+    "teamSubtitle": "The people behind every project.",
+    "teamReadMore": "Read more",
+    "teamReadLess": "Read less",
     "byNumbers": "By the numbers",
     "stats": {
       "yearsLabel": "Years in Saudi Arabia",
