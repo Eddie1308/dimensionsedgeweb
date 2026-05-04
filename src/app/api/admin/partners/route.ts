@@ -28,6 +28,7 @@ export async function POST(request: Request) {
     });
     return NextResponse.json({ ok: true, id: created.id });
   } catch (e) {
-    return NextResponse.json({ error: e instanceof Error ? e.message : "Database error" }, { status: 500 });
+    console.error("[admin/partners POST]", e);
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
   }
 }

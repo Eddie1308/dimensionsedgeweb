@@ -2,13 +2,9 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getAdminSession } from "@/lib/auth/server";
 import { hashPassword } from "@/lib/auth/credentials";
+import { generateTempPassword } from "@/lib/auth/tempPassword";
 import { sendPasswordResetEmail } from "@/lib/email";
 import { z } from "zod";
-
-function generateTempPassword(): string {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$";
-  return Array.from({ length: 12 }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
-}
 
 const schema = z.object({ action: z.literal("reset") });
 

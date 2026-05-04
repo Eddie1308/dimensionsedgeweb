@@ -6,6 +6,7 @@ import {
   signSession,
 } from "@/lib/auth/session";
 import { verifyCredentials } from "@/lib/auth/credentials";
+import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
 
 const loginSchema = z.object({
   email: z.string().trim().email().max(200),
@@ -13,6 +14,16 @@ const loginSchema = z.object({
 });
 
 export async function POST(request: Request) {
+  // Rate limit: 10 login attempts per IP per 15 minutes.
+  const ip = getClientIp(request);
+  const limit = checkRateLimit(`login:${ip}`, 10, 15 * 60 * 1000);
+  if (!limit.allowed) {
+    return NextResponse.json(
+      { error: "Too many login attempts. Please try again later." },
+      { status: 429 },
+    );
+  }
+
   let payload: unknown;
   try {
     payload = await request.json();

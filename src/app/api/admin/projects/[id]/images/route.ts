@@ -40,7 +40,8 @@ export async function POST(
     });
     return NextResponse.json({ ok: true, id: image.id });
   } catch (e) {
-    return NextResponse.json({ error: e instanceof Error ? e.message : "Database error" }, { status: 500 });
+    console.error("[admin/projects/images POST]", e);
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
   }
 }
 
@@ -62,6 +63,7 @@ export async function DELETE(
     await prisma.projectImage.delete({ where: { id: parsed.data.imageId } });
     return NextResponse.json({ ok: true });
   } catch (e) {
-    return NextResponse.json({ error: e instanceof Error ? e.message : "Database error" }, { status: 500 });
+    console.error("[admin/projects/images DELETE]", e);
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
   }
 }

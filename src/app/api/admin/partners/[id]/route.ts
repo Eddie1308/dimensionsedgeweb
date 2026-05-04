@@ -33,7 +33,8 @@ export async function PATCH(
     });
     return NextResponse.json({ ok: true });
   } catch (e) {
-    return NextResponse.json({ error: e instanceof Error ? e.message : "Database error" }, { status: 500 });
+    console.error("[admin/partners PATCH]", e);
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
   }
 }
 
@@ -48,6 +49,7 @@ export async function DELETE(
     await prisma.partner.delete({ where: { id } });
     return NextResponse.json({ ok: true });
   } catch (e) {
-    return NextResponse.json({ error: e instanceof Error ? e.message : "Database error" }, { status: 500 });
+    console.error("[admin/partners DELETE]", e);
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
   }
 }

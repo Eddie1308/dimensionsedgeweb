@@ -3,7 +3,9 @@ import { prisma } from "@/lib/prisma";
 import { getAdminSession } from "@/lib/auth/server";
 import { consumeCode } from "@/lib/verificationCode";
 import { hashPassword } from "@/lib/auth/credentials";
+import { generateTempPassword } from "@/lib/auth/tempPassword";
 import { sendWelcomeEmail } from "@/lib/email";
+import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
 import { z } from "zod";
 
 const schema = z.object({
@@ -11,14 +13,20 @@ const schema = z.object({
   action: z.enum(["CREATE_USER", "DELETE_USER"]),
 });
 
-function generateTempPassword(): string {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$";
-  return Array.from({ length: 12 }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
-}
-
 export async function POST(request: Request) {
   const session = await getAdminSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  // Rate limit: 10 verify attempts per IP per 10 minutes (defense-in-depth on
+  // top of the per-action max-attempts in consumeCode).
+  const ip = getClientIp(request);
+  const limit = checkRateLimit(`verify:${ip}`, 10, 10 * 60 * 1000);
+  if (!limit.allowed) {
+    return NextResponse.json(
+      { error: "Too many attempts. Please try again later." },
+      { status: 429 },
+    );
+  }
 
   const body = await request.json().catch(() => null);
   const parsed = schema.safeParse(body);

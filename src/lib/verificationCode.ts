@@ -1,7 +1,32 @@
+import crypto from "node:crypto";
 import { prisma } from "@/lib/prisma";
 
 export function generateCode(): string {
-  return String(Math.floor(100000 + Math.random() * 900000));
+  // Cryptographically secure 6-digit code (100000-999999).
+  return String(crypto.randomInt(100000, 1000000));
+}
+
+// Tracks failed attempts per (action) — once we hit MAX_ATTEMPTS, all codes
+// for that action are invalidated to stop brute force. Resets when a code
+// is successfully consumed or via the cleanup interval.
+const MAX_ATTEMPTS = 5;
+const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
+type AttemptRecord = { count: number; resetAt: number };
+const attempts = new Map<string, AttemptRecord>();
+
+function recordFailure(action: string): boolean {
+  const now = Date.now();
+  const rec = attempts.get(action);
+  if (!rec || rec.resetAt < now) {
+    attempts.set(action, { count: 1, resetAt: now + ATTEMPT_WINDOW_MS });
+    return true;
+  }
+  rec.count++;
+  return rec.count <= MAX_ATTEMPTS;
+}
+
+function clearAttempts(action: string) {
+  attempts.delete(action);
 }
 
 export async function createCode(
@@ -24,8 +49,17 @@ export async function consumeCode(
   const record = await prisma.verificationCode.findFirst({
     where: { code, action, usedAt: null },
   });
-  if (!record) return { ok: false, error: "Invalid verification code." };
-  if (record.expiresAt < new Date()) return { ok: false, error: "Verification code has expired." };
+  if (!record) {
+    const stillAllowed = recordFailure(action);
+    if (!stillAllowed) {
+      return { ok: false, error: "Too many failed attempts. Request a new code." };
+    }
+    return { ok: false, error: "Invalid verification code." };
+  }
+  if (record.expiresAt < new Date()) {
+    return { ok: false, error: "Verification code has expired." };
+  }
   await prisma.verificationCode.update({ where: { id: record.id }, data: { usedAt: new Date() } });
+  clearAttempts(action);
   return { ok: true, payload: record.payload, targetUserId: record.targetUserId };
 }

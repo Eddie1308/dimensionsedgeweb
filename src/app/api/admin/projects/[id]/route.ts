@@ -59,8 +59,8 @@ export async function PATCH(
     });
     return NextResponse.json({ ok: true });
   } catch (e) {
-    const message = e instanceof Error ? e.message : "Database error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("[admin/projects PATCH]", e);
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
   }
 }
 
@@ -75,7 +75,7 @@ export async function DELETE(
     await prisma.project.delete({ where: { id } });
     return NextResponse.json({ ok: true });
   } catch (e) {
-    const message = e instanceof Error ? e.message : "Database error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("[admin/projects DELETE]", e);
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
   }
 }

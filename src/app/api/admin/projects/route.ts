@@ -46,7 +46,7 @@ export async function POST(request: Request) {
     });
     return NextResponse.json({ ok: true, id: created.id });
   } catch (e) {
-    const message = e instanceof Error ? e.message : "Database error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("[admin/projects POST]", e);
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
   }
 }
