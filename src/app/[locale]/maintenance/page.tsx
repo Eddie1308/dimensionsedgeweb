@@ -1,8 +1,18 @@
+import { redirect } from "next/navigation";
 import { getSiteSettings } from "@/lib/content/siteSettings";
 import { Logo } from "@/components/layout/Logo";
 
-export default async function MaintenancePage() {
+export default async function MaintenancePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const settings = await getSiteSettings();
+
+  if (!settings.maintenanceEnabled) {
+    redirect(`/${locale}`);
+  }
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[var(--color-brand-950)] px-6 text-center">
