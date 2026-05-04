@@ -40,7 +40,9 @@ export default async function proxy(request: NextRequest) {
     return adminGuard(request);
   }
 
-  return intlMiddleware(request);
+  const response = intlMiddleware(request);
+  response.headers.set("x-pathname", pathname);
+  return response;
 }
 
 export const config = {

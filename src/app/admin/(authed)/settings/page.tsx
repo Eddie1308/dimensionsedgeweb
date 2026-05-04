@@ -3,6 +3,8 @@ import { withAdminDb } from "@/lib/admin/db-guard";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { DbNotice } from "@/components/admin/DbNotice";
 import { SettingsForm } from "./SettingsForm";
+import { SiteStatusPanel } from "./SiteStatusPanel";
+import { getSiteSettings } from "@/lib/content/siteSettings";
 
 const DEFAULT_SETTINGS = [
   { key: "email", value: "info@dimensionsedgeest.com", category: "contact" },
@@ -12,6 +14,7 @@ const DEFAULT_SETTINGS = [
 ];
 
 export default async function AdminSettingsPage() {
+  const siteSettings = await getSiteSettings();
   const result = await withAdminDb(async () => {
     const existing = await prisma.siteSetting.findMany({
       orderBy: [{ category: "asc" }, { key: "asc" }],
@@ -50,13 +53,20 @@ export default async function AdminSettingsPage() {
         title="Site settings"
         description="Contact details and other site-wide values shown in the footer and contact page."
       />
-      <SettingsForm
-        settings={result.data.map((s) => ({
-          key: s.key,
-          value: s.value,
-          category: s.category,
-        }))}
-      />
+      <div className="space-y-10">
+        <SiteStatusPanel
+          bannerEnabled={siteSettings.bannerEnabled}
+          bannerText={siteSettings.bannerText}
+          maintenanceEnabled={siteSettings.maintenanceEnabled}
+        />
+        <SettingsForm
+          settings={result.data.map((s) => ({
+            key: s.key,
+            value: s.value,
+            category: s.category,
+          }))}
+        />
+      </div>
     </>
   );
 }

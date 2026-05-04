@@ -11,6 +11,9 @@ export type SiteSettings = {
   siteNameEn: string;
   siteNameAr: string;
   heroBackground: string;
+  bannerEnabled: boolean;
+  bannerText: string;
+  maintenanceEnabled: boolean;
 };
 
 const DEFAULTS: SiteSettings = {
@@ -23,6 +26,9 @@ const DEFAULTS: SiteSettings = {
   siteNameEn: "Dimensions Edge",
   siteNameAr: "ديمنشنز إيدج",
   heroBackground: "",
+  bannerEnabled: false,
+  bannerText: "",
+  maintenanceEnabled: false,
 };
 
 export async function getSiteSettings(): Promise<SiteSettings> {
@@ -37,6 +43,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
             "logoUrl", "faviconUrl",
             "siteNameEn", "siteNameAr",
             "heroBackground",
+            "bannerEnabled", "bannerText", "maintenanceEnabled",
           ],
         },
       },
@@ -52,6 +59,9 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       siteNameEn: map.siteNameEn || DEFAULTS.siteNameEn,
       siteNameAr: map.siteNameAr || DEFAULTS.siteNameAr,
       heroBackground: map.heroBackground || DEFAULTS.heroBackground,
+      bannerEnabled: map.bannerEnabled === "true",
+      bannerText: map.bannerText || DEFAULTS.bannerText,
+      maintenanceEnabled: map.maintenanceEnabled === "true",
     };
   } catch {
     return DEFAULTS;

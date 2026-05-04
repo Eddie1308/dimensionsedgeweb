@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
-import { notFound } from "next/navigation";
+import { headers } from "next/headers";
+import { notFound, redirect } from "next/navigation";
 import { routing, localeDirection, type Locale } from "@/i18n/routing";
 import { inter, tajawal } from "@/lib/fonts";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SiteBanner } from "@/components/layout/SiteBanner";
 import { getSiteSettings } from "@/lib/content/siteSettings";
 import { cn } from "@/lib/utils";
 import "../globals.css";
@@ -42,6 +44,16 @@ export default async function LocaleLayout({
   const settings = await getSiteSettings();
   const siteName = locale === "ar" ? settings.siteNameAr : settings.siteNameEn;
 
+  // Maintenance mode: redirect all pages except /maintenance itself
+  if (settings.maintenanceEnabled) {
+    const headersList = await headers();
+    const pathname = headersList.get("x-pathname") || headersList.get("x-invoke-path") || "";
+    const isMaintenancePage = pathname.endsWith("/maintenance");
+    if (!isMaintenancePage) {
+      redirect(`/${locale}/maintenance`);
+    }
+  }
+
   return (
     <html
       lang={locale}
@@ -60,9 +72,12 @@ export default async function LocaleLayout({
       <body className="min-h-screen bg-[var(--color-surface)] text-[var(--color-ink)] antialiased">
         <NextIntlClientProvider>
           <div className="flex min-h-screen flex-col">
-            <SiteHeader locale={locale} />
+            {!settings.maintenanceEnabled && settings.bannerEnabled && settings.bannerText && (
+              <SiteBanner text={settings.bannerText} />
+            )}
+            {!settings.maintenanceEnabled && <SiteHeader locale={locale} />}
             <main className="flex-1">{children}</main>
-            <SiteFooter locale={locale} />
+            {!settings.maintenanceEnabled && <SiteFooter locale={locale} />}
           </div>
         </NextIntlClientProvider>
       </body>
