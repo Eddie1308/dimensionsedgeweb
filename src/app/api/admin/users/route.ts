@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { getAdminSession } from "@/lib/auth/server";
 import { createCode } from "@/lib/verificationCode";
 import { sendVerificationCode } from "@/lib/email";
+import { isSameOrigin } from "@/lib/security/origin";
 import { z } from "zod";
 
 const initiateSchema = z.object({
@@ -25,6 +26,9 @@ export async function GET() {
 
 // POST — initiate user creation (sends code to super user)
 export async function POST(request: Request) {
+  if (!isSameOrigin(request)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   const session = await getAdminSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 

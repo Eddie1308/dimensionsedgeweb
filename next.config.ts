@@ -3,6 +3,25 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
+// Content-Security-Policy — restricts what can load on every page.
+// 'unsafe-inline' on script-src is required for Next's hydration bootstrap;
+// 'unsafe-inline' on style-src is required for next/font and motion inline
+// styles. These can be tightened with nonces in a future pass, but the
+// default-src 'self' baseline already eliminates most XSS surfaces.
+const cspDirectives = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self' data:",
+  "connect-src 'self'",
+  "frame-ancestors 'self'",
+  "form-action 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "upgrade-insecure-requests",
+].join("; ");
+
 const securityHeaders = [
   // Don't reveal which technology serves the response.
   { key: "X-Powered-By", value: "" },
@@ -19,6 +38,7 @@ const securityHeaders = [
     key: "Strict-Transport-Security",
     value: "max-age=63072000; includeSubDomains; preload",
   },
+  { key: "Content-Security-Policy", value: cspDirectives },
 ];
 
 const nextConfig: NextConfig = {

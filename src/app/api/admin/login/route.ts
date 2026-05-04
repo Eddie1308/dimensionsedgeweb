@@ -7,6 +7,7 @@ import {
 } from "@/lib/auth/session";
 import { verifyCredentials } from "@/lib/auth/credentials";
 import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
+import { isSameOrigin } from "@/lib/security/origin";
 
 const loginSchema = z.object({
   email: z.string().trim().email().max(200),
@@ -14,6 +15,9 @@ const loginSchema = z.object({
 });
 
 export async function POST(request: Request) {
+  if (!isSameOrigin(request)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   // Rate limit: 10 login attempts per IP per 15 minutes.
   const ip = getClientIp(request);
   const limit = checkRateLimit(`login:${ip}`, 10, 15 * 60 * 1000);

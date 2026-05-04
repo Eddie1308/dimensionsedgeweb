@@ -40,8 +40,16 @@ export default async function proxy(request: NextRequest) {
     return adminGuard(request);
   }
 
+  // Strip any inbound x-pathname so a client cannot smuggle a value to bypass
+  // the maintenance redirect (which reads this header in the locale layout).
+  // Then set our own trusted value before downstream rendering.
+  request.headers.delete("x-pathname");
+  request.headers.set("x-pathname", pathname);
+
   const response = intlMiddleware(request);
-  response.headers.set("x-pathname", pathname);
+  // Defense in depth: also remove from the outgoing response headers so the
+  // value never reaches the browser as a leak.
+  response.headers.delete("x-pathname");
   return response;
 }
 

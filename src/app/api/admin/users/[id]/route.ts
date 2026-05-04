@@ -3,12 +3,16 @@ import { prisma } from "@/lib/prisma";
 import { getAdminSession } from "@/lib/auth/server";
 import { createCode } from "@/lib/verificationCode";
 import { sendVerificationCode } from "@/lib/email";
+import { isSameOrigin } from "@/lib/security/origin";
 
 // POST to /api/admin/users/[id] — initiate delete (sends code to super user)
 export async function POST(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  if (!isSameOrigin(request)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   const session = await getAdminSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 

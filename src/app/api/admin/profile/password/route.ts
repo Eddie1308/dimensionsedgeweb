@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { getAdminSession } from "@/lib/auth/server";
 import { hashPassword } from "@/lib/auth/credentials";
 import bcrypt from "bcryptjs";
+import { isSameOrigin } from "@/lib/security/origin";
 import { z } from "zod";
 
 const schema = z.object({
@@ -11,6 +12,9 @@ const schema = z.object({
 });
 
 export async function POST(request: Request) {
+  if (!isSameOrigin(request)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   const session = await getAdminSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 

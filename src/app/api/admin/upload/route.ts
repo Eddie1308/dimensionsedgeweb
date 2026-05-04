@@ -1,10 +1,14 @@
 import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/auth/server";
 import { processAndStoreImage } from "@/lib/upload/processImage";
+import { isSameOrigin } from "@/lib/security/origin";
 
 // Multipart upload endpoint. Admin-guarded, processes image through Sharp,
 // saves under /public/uploads/<yyyy>/<mm>/<random>.webp, returns the URL.
 export async function POST(request: Request) {
+  if (!isSameOrigin(request)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   const session = await getAdminSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

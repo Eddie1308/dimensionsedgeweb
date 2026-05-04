@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getAdminSession } from "@/lib/auth/server";
 import { projectSchema } from "@/lib/validators/admin";
+import { isSameOrigin } from "@/lib/security/origin";
 
 async function requireSession() {
   const session = await getAdminSession();
@@ -15,6 +16,9 @@ export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  if (!isSameOrigin(request)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   const { session, response } = await requireSession();
   if (!session) return response!;
 
@@ -65,9 +69,12 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  if (!isSameOrigin(request)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   const { session, response } = await requireSession();
   if (!session) return response!;
   const { id } = await params;
