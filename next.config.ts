@@ -42,6 +42,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   reactStrictMode: true,
   poweredByHeader: false,
   // Compress body responses (Nginx will also gzip; this is the in-Node fallback).

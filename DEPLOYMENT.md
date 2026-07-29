@@ -170,7 +170,13 @@ server {
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # Required so the standalone Next.js server builds absolute redirect
+        # URLs (e.g. next-intl's "/" -> "/en") using the public host/port
+        # instead of falling back to its own internal PORT (3000), which
+        # leaks ":3000" into the Location header.
         proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Port $server_port;
         proxy_read_timeout 60s;
         proxy_send_timeout 60s;
         proxy_buffering on;
