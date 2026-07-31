@@ -232,6 +232,7 @@ pm2 reload dimensionsedge   # zero-downtime
 - [ ] Image upload from `/admin/projects/new` saves to `/uploads/<yyyy>/<mm>/<hex>.webp`
 - [ ] Lighthouse scores: Performance ≥ 90 mobile, Accessibility ≥ 95, Best Practices ≥ 95, SEO ≥ 95
 - [ ] Security headers present on `/`: `Strict-Transport-Security`, `X-Content-Type-Options`, `Referrer-Policy`
+- [ ] Nginx has a `location /uploads/` alias pointing at the live `public/uploads/` dir (not just Next's build-time static copy) — verify with `curl -I` against a file freshly uploaded through `/admin`, not an old one baked into the last build
 
 ---
 

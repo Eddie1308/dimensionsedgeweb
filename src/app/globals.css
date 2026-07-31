@@ -5,41 +5,43 @@
   --font-sans: var(--font-inter), "Tajawal", system-ui, -apple-system, sans-serif;
   --font-arabic: var(--font-tajawal), "IBM Plex Sans Arabic", system-ui, sans-serif;
 
-  /* Brand palette — deep blue-charcoal with engineered feel.
-     Tuned for the ELV/ICT industry: technical, established, not flashy. */
-  --color-brand-50:  oklch(0.97 0.01 245);
-  --color-brand-100: oklch(0.93 0.025 245);
-  --color-brand-200: oklch(0.85 0.04 245);
-  --color-brand-300: oklch(0.74 0.07 245);
-  --color-brand-400: oklch(0.62 0.10 245);
-  --color-brand-500: oklch(0.50 0.13 245);
-  --color-brand-600: oklch(0.42 0.13 245);
-  --color-brand-700: oklch(0.35 0.11 245);
-  --color-brand-800: oklch(0.27 0.08 245);
-  --color-brand-900: oklch(0.20 0.06 245);
-  --color-brand-950: oklch(0.13 0.04 245);
+  /* Brand palette — teal rebrand (primary #009597 / accent #14b1a9).
+     Same lightness/chroma ladder as the previous blue scale, hue rotated
+     to match the new logo. Hues computed directly from the brand hex
+     values (196.5 / 189) so brand and accent read as one teal family. */
+  --color-brand-50:  oklch(0.97 0.01 196);
+  --color-brand-100: oklch(0.93 0.025 196);
+  --color-brand-200: oklch(0.85 0.04 196);
+  --color-brand-300: oklch(0.74 0.07 196);
+  --color-brand-400: oklch(0.62 0.10 196);
+  --color-brand-500: oklch(0.50 0.13 196);
+  --color-brand-600: oklch(0.42 0.13 196);
+  --color-brand-700: oklch(0.35 0.11 196);
+  --color-brand-800: oklch(0.27 0.08 196);
+  --color-brand-900: oklch(0.20 0.06 196);
+  --color-brand-950: oklch(0.13 0.04 196);
 
-  /* Accent — warm amber for CTAs and highlights against the cool brand */
-  --color-accent-50:  oklch(0.97 0.02 75);
-  --color-accent-100: oklch(0.94 0.05 75);
-  --color-accent-200: oklch(0.88 0.10 75);
-  --color-accent-300: oklch(0.81 0.14 75);
-  --color-accent-400: oklch(0.74 0.16 75);
-  --color-accent-500: oklch(0.68 0.17 75);
-  --color-accent-600: oklch(0.60 0.16 75);
-  --color-accent-700: oklch(0.50 0.13 75);
-  --color-accent-800: oklch(0.40 0.10 75);
-  --color-accent-900: oklch(0.30 0.07 75);
+  /* Accent — brighter teal for CTAs/highlights. No warm color per rebrand. */
+  --color-accent-50:  oklch(0.97 0.02 189);
+  --color-accent-100: oklch(0.94 0.05 189);
+  --color-accent-200: oklch(0.88 0.10 189);
+  --color-accent-300: oklch(0.81 0.14 189);
+  --color-accent-400: oklch(0.74 0.16 189);
+  --color-accent-500: oklch(0.68 0.17 189);
+  --color-accent-600: oklch(0.60 0.16 189);
+  --color-accent-700: oklch(0.50 0.13 189);
+  --color-accent-800: oklch(0.40 0.10 189);
+  --color-accent-900: oklch(0.30 0.07 189);
 
   /* Surface & ink */
   --color-surface:        oklch(1 0 0);
-  --color-surface-muted:  oklch(0.98 0.005 245);
-  --color-surface-sunken: oklch(0.96 0.01 245);
-  --color-ink:            oklch(0.20 0.06 245);
-  --color-ink-muted:      oklch(0.45 0.04 245);
-  --color-ink-subtle:     oklch(0.62 0.03 245);
-  --color-border:         oklch(0.90 0.01 245);
-  --color-border-strong:  oklch(0.80 0.02 245);
+  --color-surface-muted:  oklch(0.98 0.005 196);
+  --color-surface-sunken: oklch(0.96 0.01 196);
+  --color-ink:            oklch(0.20 0.06 196);
+  --color-ink-muted:      oklch(0.45 0.04 196);
+  --color-ink-subtle:     oklch(0.62 0.03 196);
+  --color-border:         oklch(0.90 0.01 196);
+  --color-border-strong:  oklch(0.80 0.02 196);
 
   /* Typography scale */
   --text-display: 4.5rem;
