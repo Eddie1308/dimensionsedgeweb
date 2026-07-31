@@ -74,7 +74,7 @@ export default async function HomePage({
               src={settings.heroBackground}
               alt=""
               aria-hidden="true"
-              className="absolute inset-0 h-full w-full object-contain"
+              className="absolute inset-0 h-full w-full object-cover object-top"
             />
             <div className="absolute inset-0 bg-[var(--color-brand-950)]/50 pointer-events-none" />
           </>

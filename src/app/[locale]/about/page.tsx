@@ -41,7 +41,7 @@ export default async function AboutPage({
             <img
               src={settings.aboutBanner}
               alt={t("about.heroImageAlt")}
-              className="absolute inset-0 h-full w-full object-contain opacity-40"
+              className="absolute inset-0 h-full w-full object-cover object-top opacity-40"
             />
           </>
         )}

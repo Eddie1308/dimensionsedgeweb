@@ -40,7 +40,7 @@ export function PageHeader({
           <img
             src={backgroundImage}
             alt=""
-            className="absolute inset-0 h-full w-full object-contain opacity-40"
+            className="absolute inset-0 h-full w-full object-cover opacity-40"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-brand-950)]/90 via-[var(--color-brand-950)]/60 to-transparent" />
         </>
