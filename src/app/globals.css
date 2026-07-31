@@ -56,6 +56,14 @@
   /* Motion */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --animate-marquee: marquee 32s linear infinite;
+}
+
+/* Track is duplicated 2x in markup; -50% brings it back to the exact
+   start position for a seamless loop — pure CSS, no JS/framer cost. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @layer base {

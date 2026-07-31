@@ -23,6 +23,7 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { getVisiblePartners } from "@/lib/content/partners";
+import { LogoMarquee } from "@/components/ui/LogoMarquee";
 import { getFeaturedProjects } from "@/lib/content/projects";
 import { getSiteSettings } from "@/lib/content/siteSettings";
 
@@ -282,22 +283,8 @@ export default async function HomePage({
                 {t("home.partnersEyebrow")}
               </p>
             </Reveal>
-            <Stagger whenInView stagger={0.04} className="flex flex-wrap items-center justify-center gap-8">
-              {partners.slice(0, 8).map((partner) => {
-                const name = isAr ? partner.nameAr : partner.nameEn;
-                return (
-                  <StaggerItem key={partner.nameEn}>
-                    <span
-                      className="text-lg font-bold tracking-tight text-[var(--color-ink-subtle)] opacity-60 transition-opacity hover:opacity-100"
-                      dir="ltr"
-                    >
-                      {partner.logoText || name}
-                    </span>
-                  </StaggerItem>
-                );
-              })}
-            </Stagger>
           </Container>
+          <LogoMarquee partners={partners} isAr={isAr} />
         </Section>
       )}
 
