@@ -59,11 +59,13 @@
   --animate-marquee: marquee 32s linear infinite;
 }
 
-/* Track is duplicated 2x in markup; -50% brings it back to the exact
-   start position for a seamless loop — pure CSS, no JS/framer cost. */
+/* Track is duplicated 6x in markup so it always overflows the viewport
+   even with very few logos — otherwise a short track leaves a visible
+   gap before the loop point. calc(-100%/6) lands exactly back on an
+   identical copy for a seamless wrap — pure CSS, no JS/framer cost. */
 @keyframes marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(calc(-100% / 6)); }
 }
 
 @layer base {

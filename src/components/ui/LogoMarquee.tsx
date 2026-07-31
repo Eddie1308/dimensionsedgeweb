@@ -1,8 +1,9 @@
 import { type Partner } from "@/data/partners";
 
 // Pure CSS animation (no JS/framer-motion) — cheap to run, pauses on hover
-// via a CSS-only selector. Track is rendered twice back-to-back so the
-// -50% translateX loop is seamless.
+// via a CSS-only selector. Track is rendered 6x back-to-back so it always
+// overflows the viewport even with only a handful of logos — otherwise the
+// loop point is visibly a blank gap rather than a seamless wrap.
 export function LogoMarquee({
   partners,
   isAr,
@@ -50,6 +51,10 @@ export function LogoMarquee({
       <div className="flex w-max animate-marquee items-center [animation-play-state:running] hover:[animation-play-state:paused] rtl:[animation-direction:reverse]">
         {track("a")}
         {track("b")}
+        {track("c")}
+        {track("d")}
+        {track("e")}
+        {track("f")}
       </div>
     </div>
   );

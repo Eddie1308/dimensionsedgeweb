@@ -56,21 +56,19 @@ export const services: ServiceContent[] = [
     summaryAr:
       "الشبكة عالية الأداء تبدأ بأساس متين — كابلات منظمة بدقة عالية لضمان الكفاءة وقابلية التوسّع طويلة الأمد.",
     introEn:
-      "We design, install, and certify the physical cabling infrastructure that every other system depends on. From a single floor of cubicles to multi-tower campuses, our teams deliver TIA/EIA-compliant runs with full Fluke certification and as-built documentation that survives the first audit.",
+      "We design, install, and certify the physical cabling infrastructure that every other system depends on. From a single floor of cubicles to multi-tower campuses, our teams deliver TIA/EIA-compliant runs with as-built documentation that survives the first audit.",
     introAr:
-      "نُصمّم ونركّب ونعتمد البنية التحتية المادية للكابلات التي تعتمد عليها جميع الأنظمة الأخرى. من طابق واحد من المكاتب إلى مجمّعات متعددة الأبراج، تُقدّم فرقنا تركيبات متوافقة مع TIA/EIA مع اعتماد كامل من Fluke وتوثيق دقيق يصمد أمام أي تدقيق.",
+      "نُصمّم ونركّب ونعتمد البنية التحتية المادية للكابلات التي تعتمد عليها جميع الأنظمة الأخرى. من طابق واحد من المكاتب إلى مجمّعات متعددة الأبراج، تُقدّم فرقنا تركيبات متوافقة مع TIA/EIA مع توثيق دقيق يصمد أمام أي تدقيق.",
     capabilitiesEn: [
       "Cat6 and Cat6A copper structured cabling",
       "Single-mode and multi-mode fiber optic backbones",
       "Data centre racks, PDUs, and cable management",
-      "Fluke DSX certification and as-built documentation",
       "Switches, patch panels, and network cabinets",
     ],
     capabilitiesAr: [
       "كابلات Cat6 و Cat6A النحاسية المنظمة",
       "ألياف بصرية أحادية ومتعددة الأنماط",
       "خزائن مراكز البيانات وموزعات الطاقة وإدارة الكابلات",
-      "اعتماد Fluke DSX وتوثيق التركيب الفعلي",
       "المفاتيح ولوحات التوصيل وخزائن الشبكات",
     ],
   },
@@ -84,12 +82,12 @@ export const services: ServiceContent[] = [
     summaryAr:
       "غيّروا طريقة تواصل أعمالكم — قاعات اجتماعات وقاعات كبرى ولافتات رقمية وفصول دراسية مصمّمة للأداء والموثوقية.",
     introEn:
-      "Our AV work spans everything from a single meeting room to a full auditorium. That means interactive and LED display screens, digital signage, paperless conferencing with motorized or tabletop screens, microphone and audio systems, and — for larger spaces — professional sound, lighting, and information-release systems for schools and public areas. We work with itc, Samsung, Hikvision, and Yealink depending on what the space calls for.",
+      "Our AV work spans everything from a single meeting room to a full auditorium. That means interactive and LED display screens, digital signage, paperless conferencing with motorized or tabletop screens, microphone and audio systems, and — for larger spaces — professional sound, lighting, and information-release systems for schools and public areas.",
     introAr:
-      "أعمالنا في الصوت والصورة تمتد من قاعة اجتماعات واحدة إلى قاعة كبرى متكاملة. يشمل ذلك الشاشات التفاعلية وشاشات LED واللافتات الرقمية وأنظمة المؤتمرات اللاورقية بشاشات متحركة أو مدمجة في الطاولة، وأنظمة الميكروفونات والصوت، وللمساحات الأكبر — أنظمة الصوت الاحترافية والإضاءة وأنظمة عرض المعلومات للمدارس والمساحات العامة. نعمل مع itc وSamsung وHikvision وYealink بحسب متطلبات كل مساحة.",
+      "أعمالنا في الصوت والصورة تمتد من قاعة اجتماعات واحدة إلى قاعة كبرى متكاملة. يشمل ذلك الشاشات التفاعلية وشاشات LED واللافتات الرقمية وأنظمة المؤتمرات اللاورقية بشاشات متحركة أو مدمجة في الطاولة، وأنظمة الميكروفونات والصوت، وللمساحات الأكبر — أنظمة الصوت الاحترافية والإضاءة وأنظمة عرض المعلومات للمدارس والمساحات العامة.",
     capabilitiesEn: [
       "Interactive and LED display screens, indoor and outdoor",
-      "Digital signage (Samsung, Hikvision, Yealink)",
+      "Digital signage (itc, Samsung, Hikvision, Yealink)",
       "Paperless conference systems — motorized pop-up and tabletop screens",
       "Microphone and audio conferencing systems",
       "Auditorium systems — pro sound, stage lighting, and in-seat microphones",
@@ -98,7 +96,7 @@ export const services: ServiceContent[] = [
     ],
     capabilitiesAr: [
       "شاشات تفاعلية وشاشات LED داخلية وخارجية",
-      "لافتات رقمية (Samsung و Hikvision و Yealink)",
+      "لافتات رقمية (itc و Samsung و Hikvision و Yealink)",
       "أنظمة مؤتمرات لاورقية — شاشات متحركة ومدمجة في الطاولة",
       "أنظمة ميكروفونات ومؤتمرات صوتية",
       "أنظمة القاعات الكبرى — صوت احترافي وإضاءة وميكروفونات المقاعد",
@@ -109,29 +107,41 @@ export const services: ServiceContent[] = [
   {
     slug: "erpnext",
     iconKey: "workflow",
-    titleEn: "ERPNext Implementation",
-    titleAr: "تطبيق ERPNext",
+    titleEn: "ERP Implementation",
+    titleAr: "تطبيق ERP",
     summaryEn:
-      "Technology should simplify business, not complicate it — ERPNext tailored to your workflows, not the other way around.",
+      "Technology should simplify business, not complicate it — we implement ERPNext for companies, restaurants, logistics, schools, and factories, tailored to how you actually work.",
     summaryAr:
-      "التقنية يجب أن تُبسّط الأعمال لا أن تُعقّدها — تطبيق ERPNext مصمّم حسب سير عملكم، لا العكس.",
+      "التقنية يجب أن تُبسّط الأعمال لا أن تُعقّدها — نُطبّق ERPNext للشركات والمطاعم والخدمات اللوجستية والمدارس والمصانع، بما يتناسب مع طريقة عملكم الفعلية.",
     introEn:
-      "We implement ERPNext around how your business actually works. From initial setup to cross-department rollout, we configure the modules you need, migrate your existing data, and train your team so the system gets used, not shelved.",
+      "We implement ERPNext — a complete ERP platform — configured for how your business actually operates, whether that's a corporate office, a restaurant, a logistics operation, a school, or a factory floor. From initial setup to full cross-department rollout, we configure exactly the modules you need, migrate your existing data, and train your team so the system gets used, not shelved.",
     introAr:
-      "نُطبّق ERPNext وفق طريقة عمل مؤسستكم الفعلية. من الإعداد الأولي إلى التطبيق عبر الأقسام، نُهيّئ الوحدات التي تحتاجونها وننقل بياناتكم الحالية وندرّب فريقكم بحيث يُستخدم النظام فعلياً لا أن يُهمَل.",
+      "نُطبّق ERPNext — منصة ERP متكاملة — بما يتناسب مع طريقة عمل مؤسستكم الفعلية، سواء كانت شركة أو مطعماً أو عملية لوجستية أو مدرسة أو مصنعاً. من الإعداد الأولي إلى التطبيق الكامل عبر الأقسام، نُهيّئ الوحدات التي تحتاجونها بالضبط وننقل بياناتكم الحالية وندرّب فريقكم بحيث يُستخدم النظام فعلياً لا أن يُهمَل.",
     capabilitiesEn: [
-      "ERPNext setup, configuration, and customization",
-      "Cross-department workflow integration",
-      "Data migration from existing systems",
-      "Automated reporting and operational dashboards",
-      "User training and ongoing support",
+      "Helpdesk Support",
+      "Accounting",
+      "HR",
+      "ZATCA integration",
+      "Buying",
+      "Selling",
+      "Stock (inventory management)",
+      "Assets",
+      "Manufacturing",
+      "Projects",
+      "CRM",
     ],
     capabilitiesAr: [
-      "إعداد وتهيئة وتخصيص ERPNext",
-      "تكامل سير العمل بين الأقسام",
-      "ترحيل البيانات من الأنظمة الحالية",
-      "تقارير آلية ولوحات تحكم تشغيلية",
-      "تدريب المستخدمين والدعم المستمر",
+      "الدعم الفني (Helpdesk)",
+      "المحاسبة (Accounting)",
+      "الموارد البشرية (HR)",
+      "التكامل مع فوترة ZATCA الإلكترونية",
+      "المشتريات (Buying)",
+      "المبيعات (Selling)",
+      "المخزون وإدارة المستودعات (Stock)",
+      "الأصول (Assets)",
+      "التصنيع (Manufacturing)",
+      "المشاريع (Projects)",
+      "إدارة علاقات العملاء (CRM)",
     ],
   },
   {
@@ -170,9 +180,9 @@ export const services: ServiceContent[] = [
     summaryAr:
       "الأمن لا يقتصر على المراقبة — أنظمة مراقبة وتحكم بالدخول ذكية تعمل معاً بدلاً من كونها أنظمة منفصلة.",
     introEn:
-      "From a 16-camera retail rollout to multi-thousand-channel city-scale projects, we design surveillance systems that meet daily operational reality, not just the design brief. Alongside CCTV, we integrate access control — card, biometric, and mobile-credential systems — so identity and video work together instead of as two separate systems bolted on after the fact.",
+      "We design surveillance systems that meet daily operational reality, not just the design brief. Alongside CCTV, we integrate access control — card, biometric, and mobile-credential systems — so identity and video work together instead of as two separate systems bolted on after the fact.",
     introAr:
-      "من تركيبات بـ16 كاميرا في المتاجر إلى مشاريع على مستوى المدن بآلاف القنوات، نُصمّم أنظمة مراقبة تلبي الواقع التشغيلي اليومي لا فقط مواصفات التصميم. إلى جانب المراقبة، نُدمج التحكم بالدخول — بالبطاقات والبصمة والهوية المحمولة — بحيث تعمل الهوية والفيديو معاً بدلاً من كونهما نظامين منفصلين.",
+      "نُصمّم أنظمة مراقبة تلبي الواقع التشغيلي اليومي لا فقط مواصفات التصميم. إلى جانب المراقبة، نُدمج التحكم بالدخول — بالبطاقات والبصمة والهوية المحمولة — بحيث تعمل الهوية والفيديو معاً بدلاً من كونهما نظامين منفصلين.",
     capabilitiesEn: [
       "Hikvision IP cameras: dome, bullet, PTZ, panoramic",
       "Centralized VMS with multi-site federation and AI analytics",

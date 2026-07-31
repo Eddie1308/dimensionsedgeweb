@@ -49,12 +49,12 @@ const services = [
   },
   {
     slug: "erpnext",
-    titleEn: "ERPNext Implementation",
-    titleAr: "تطبيق ERPNext",
+    titleEn: "ERP Implementation",
+    titleAr: "تطبيق ERP",
     summaryEn:
-      "Technology should simplify business, not complicate it — ERPNext tailored to your workflows, not the other way around.",
+      "Technology should simplify business, not complicate it — we implement ERPNext for companies, restaurants, logistics, schools, and factories, tailored to how you actually work.",
     summaryAr:
-      "التقنية يجب أن تُبسّط الأعمال لا أن تُعقّدها — تطبيق ERPNext مصمّم حسب سير عملكم، لا العكس.",
+      "التقنية يجب أن تُبسّط الأعمال لا أن تُعقّدها — نُطبّق ERPNext للشركات والمطاعم والخدمات اللوجستية والمدارس والمصانع، بما يتناسب مع طريقة عملكم الفعلية.",
     iconKey: "workflow",
     order: 4,
   },
