@@ -12,6 +12,7 @@ import {
   X,
   Users,
   UserSquare2,
+  Layers,
 } from "lucide-react";
 import { AdminUserMenu } from "./AdminUserMenu";
 import { AdminNavLink } from "./AdminNavLink";
@@ -21,6 +22,7 @@ import { cn } from "@/lib/utils";
 const nav = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin/projects", label: "Projects", icon: FolderOpen },
+  { href: "/admin/services", label: "Services", icon: Layers },
   { href: "/admin/partners", label: "Partners", icon: Handshake },
   { href: "/admin/clients", label: "Clients", icon: Building2 },
   { href: "/admin/messages", label: "Messages", icon: Mail },

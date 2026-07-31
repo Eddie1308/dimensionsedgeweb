@@ -43,6 +43,12 @@ export const clientSchema = z.object({
   order: z.coerce.number().int().optional().default(0),
 });
 
+export const serviceBrandSchema = z.object({
+  serviceId: trimmedString(60).min(1),
+  name: trimmedString(80).min(1),
+  order: z.coerce.number().int().optional().default(0),
+});
+
 export const settingPatchSchema = z.object({
   key: trimmedString(120).min(1),
   value: trimmedString(8000),
@@ -57,3 +63,4 @@ export type ProjectInput = z.infer<typeof projectSchema>;
 export type PartnerInput = z.infer<typeof partnerSchema>;
 export type ClientInput = z.infer<typeof clientSchema>;
 export type SettingInput = z.infer<typeof settingPatchSchema>;
+export type ServiceBrandInput = z.infer<typeof serviceBrandSchema>;

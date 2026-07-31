@@ -69,10 +69,24 @@ model Service {
   order         Int      @default(0)
   isVisible     Boolean  @default(true)
   projects      Project[]
+  brands        ServiceBrand[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
   @@index([isVisible, order])
+}
+
+// Brands/OEMs a service can source or support — not a claim of formal
+// partnership (see the Partner model above for confirmed partnerships).
+model ServiceBrand {
+  id        String   @id @default(cuid())
+  serviceId String
+  service   Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  name      String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([serviceId, order])
 }
 
 // ─────────────────────────────────────────────────────────────────────────

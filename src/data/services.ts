@@ -22,7 +22,6 @@ export type ServiceContent = {
   introAr: string;
   capabilitiesEn: string[];
   capabilitiesAr: string[];
-  partnersEn: string[]; // OEM / vendor names — not translated
   // Visual hint for the hero block (used in cover style)
   accentHueEn?: string;
 };
@@ -57,7 +56,6 @@ export const services: ServiceContent[] = [
       "اعتماد Fluke DSX وتوثيق التركيب الفعلي",
       "تصميم الشبكات والتبديل والتوجيه",
     ],
-    partnersEn: ["Cisco", "Aruba", "Commscope", "Panduit", "Fluke Networks"],
   },
   {
     slug: "audio-visual",
@@ -88,7 +86,6 @@ export const services: ServiceContent[] = [
       "برمجة أنظمة التحكم Crestron و Extron",
       "أنظمة صوت المساجد مع تكامل أوقات الصلاة",
     ],
-    partnersEn: ["itc", "Bosch", "Crestron", "Extron", "Samsung", "LG"],
   },
   {
     slug: "cctv",
@@ -119,7 +116,6 @@ export const services: ServiceContent[] = [
       "تخطيط التخزين وسياسة الاحتفاظ وتصميم NVR بـRAID",
       "تكامل الكاميرات الشخصية المحمولة",
     ],
-    partnersEn: ["Hikvision", "Milestone", "Genetec"],
   },
   {
     slug: "access-control",
@@ -150,7 +146,6 @@ export const services: ServiceContent[] = [
       "التسجيل المسبق للزوار وأكشاك الخدمة الذاتية",
       "تقارير الوقت والحضور",
     ],
-    partnersEn: ["HID", "Suprema", "Hikvision", "ZKTeco"],
   },
   {
     slug: "pa-system",
@@ -181,7 +176,6 @@ export const services: ServiceContent[] = [
       "تكامل مع إنذار الحريق ونظام إدارة المباني",
       "غرف مكبرات صوت موزعة مع DSP احتياطي",
     ],
-    partnersEn: ["Bosch", "TOA", "itc", "Ateis"],
   },
   {
     slug: "fire-alarm",
@@ -212,7 +206,6 @@ export const services: ServiceContent[] = [
       "برمجة مصفوفة السبب والنتيجة والتشغيل",
       "صيانة سنوية وعقود استجابة على مدار الساعة",
     ],
-    partnersEn: ["Notifier", "Honeywell", "Edwards", "Siemens"],
   },
   {
     slug: "building-automation",
@@ -243,7 +236,6 @@ export const services: ServiceContent[] = [
       "إطار عمل Niagara ومشرفو Tridium",
       "تصميم بروتوكول مفتوح — بلا قيود مورّد",
     ],
-    partnersEn: ["Siemens", "Schneider Electric", "Honeywell", "Tridium"],
   },
 ];
 

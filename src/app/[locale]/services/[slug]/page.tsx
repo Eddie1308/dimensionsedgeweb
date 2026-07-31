@@ -12,6 +12,7 @@ import { FadeUp } from "@/components/motion/FadeUp";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { getService, services } from "@/data/services";
+import { getServiceBrandNames } from "@/lib/content/serviceBrands";
 import { routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
@@ -19,6 +20,9 @@ export function generateStaticParams() {
     services.map((s) => ({ locale, slug: s.slug })),
   );
 }
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateMetadata({
   params,
@@ -50,6 +54,7 @@ export default async function ServiceDetailPage({
   const summary = isAr ? service.summaryAr : service.summaryEn;
   const intro = isAr ? service.introAr : service.introEn;
   const capabilities = isAr ? service.capabilitiesAr : service.capabilitiesEn;
+  const brands = await getServiceBrandNames(slug);
 
   return (
     <>
@@ -129,29 +134,31 @@ export default async function ServiceDetailPage({
         </Container>
       </Section>
 
-      {/* Partners */}
-      <Section tone="default">
-        <Container>
-          <Reveal>
-            <h2 className="mb-8 text-3xl font-bold text-[var(--color-brand-950)] sm:text-4xl">
-              {t("services.partnersHeading")}
-            </h2>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <div className="flex flex-wrap gap-3">
-              {service.partnersEn.map((partner) => (
-                <span
-                  key={partner}
-                  className="inline-flex items-center rounded-md border border-[var(--color-border-strong)] bg-[var(--color-surface-muted)] px-4 py-2 text-sm font-medium text-[var(--color-ink)]"
-                  dir="ltr"
-                >
-                  {partner}
-                </span>
-              ))}
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
+      {/* Brands */}
+      {brands.length > 0 && (
+        <Section tone="default">
+          <Container>
+            <Reveal>
+              <h2 className="mb-8 text-3xl font-bold text-[var(--color-brand-950)] sm:text-4xl">
+                {t("services.partnersHeading")}
+              </h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <div className="flex flex-wrap gap-3">
+                {brands.map((brand) => (
+                  <span
+                    key={brand}
+                    className="inline-flex items-center rounded-md border border-[var(--color-border-strong)] bg-[var(--color-surface-muted)] px-4 py-2 text-sm font-medium text-[var(--color-ink)]"
+                    dir="ltr"
+                  >
+                    {brand}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+          </Container>
+        </Section>
+      )}
 
       {/* CTA */}
       <Section tone="ink">
