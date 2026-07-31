@@ -4,6 +4,7 @@ import { Section } from "@/components/ui/Section";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { BrandedLogo } from "@/components/ui/BrandedLogo";
 import { getVisibleClients } from "@/lib/content/clients";
+import { getSiteSettings } from "@/lib/content/siteSettings";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -18,6 +19,7 @@ export default async function ClientsPage({
   const t = await getTranslations();
   const isAr = locale === "ar";
   const clients = await getVisibleClients();
+  const settings = await getSiteSettings();
 
   return (
     <>
@@ -25,6 +27,7 @@ export default async function ClientsPage({
         eyebrow={t("clients.eyebrow")}
         title={t("clients.title")}
         subtitle={t("clients.subtitle")}
+        backgroundImage={settings.clientsBanner}
       />
 
       <Section tone="default">

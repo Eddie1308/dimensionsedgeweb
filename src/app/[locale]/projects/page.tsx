@@ -7,6 +7,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { getVisibleProjects } from "@/lib/content/projects";
+import { getSiteSettings } from "@/lib/content/siteSettings";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -21,6 +22,7 @@ export default async function ProjectsPage({
   const t = await getTranslations();
   const isAr = locale === "ar";
   const projects = await getVisibleProjects();
+  const settings = await getSiteSettings();
 
   return (
     <>
@@ -28,6 +30,7 @@ export default async function ProjectsPage({
         eyebrow={t("projects.eyebrow")}
         title={t("projects.title")}
         subtitle={t("projects.subtitle")}
+        backgroundImage={settings.projectsBanner}
       />
 
       <Section tone="default">

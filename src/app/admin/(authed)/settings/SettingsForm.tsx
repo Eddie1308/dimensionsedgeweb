@@ -9,7 +9,17 @@ import { cn } from "@/lib/utils";
 
 type Setting = { key: string; value: string; category: string | null };
 
-const IMAGE_KEYS = ["logoUrl", "faviconUrl", "heroBackground"];
+const IMAGE_KEYS = [
+  "logoUrl",
+  "faviconUrl",
+  "heroBackground",
+  "aboutBanner",
+  "contactBanner",
+  "clientsBanner",
+  "partnersBanner",
+  "projectsBanner",
+  "servicesBanner",
+];
 
 export function SettingsForm({ settings }: { settings: Setting[] }) {
   const router = useRouter();

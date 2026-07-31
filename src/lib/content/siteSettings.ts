@@ -11,6 +11,12 @@ export type SiteSettings = {
   siteNameEn: string;
   siteNameAr: string;
   heroBackground: string;
+  aboutBanner: string;
+  contactBanner: string;
+  clientsBanner: string;
+  partnersBanner: string;
+  projectsBanner: string;
+  servicesBanner: string;
   bannerEnabled: boolean;
   bannerText: string;
   maintenanceEnabled: boolean;
@@ -26,6 +32,12 @@ const DEFAULTS: SiteSettings = {
   siteNameEn: "Dimensions Edge",
   siteNameAr: "ديمنشنز إيدج",
   heroBackground: "",
+  aboutBanner: "",
+  contactBanner: "",
+  clientsBanner: "",
+  partnersBanner: "",
+  projectsBanner: "",
+  servicesBanner: "",
   bannerEnabled: false,
   bannerText: "",
   maintenanceEnabled: false,
@@ -43,6 +55,8 @@ export async function getSiteSettings(): Promise<SiteSettings> {
             "logoUrl", "faviconUrl",
             "siteNameEn", "siteNameAr",
             "heroBackground",
+            "aboutBanner", "contactBanner", "clientsBanner",
+            "partnersBanner", "projectsBanner", "servicesBanner",
             "bannerEnabled", "bannerText", "maintenanceEnabled",
           ],
         },
@@ -59,6 +73,12 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       siteNameEn: map.siteNameEn || DEFAULTS.siteNameEn,
       siteNameAr: map.siteNameAr || DEFAULTS.siteNameAr,
       heroBackground: map.heroBackground || DEFAULTS.heroBackground,
+      aboutBanner: map.aboutBanner || DEFAULTS.aboutBanner,
+      contactBanner: map.contactBanner || DEFAULTS.contactBanner,
+      clientsBanner: map.clientsBanner || DEFAULTS.clientsBanner,
+      partnersBanner: map.partnersBanner || DEFAULTS.partnersBanner,
+      projectsBanner: map.projectsBanner || DEFAULTS.projectsBanner,
+      servicesBanner: map.servicesBanner || DEFAULTS.servicesBanner,
       bannerEnabled: map.bannerEnabled === "true",
       bannerText: map.bannerText || DEFAULTS.bannerText,
       maintenanceEnabled: map.maintenanceEnabled === "true",

@@ -9,19 +9,23 @@ export function PageHeader({
   subtitle,
   align = "left",
   tone = "default",
+  backgroundImage,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
   align?: "left" | "center";
   tone?: "default" | "ink";
+  backgroundImage?: string;
 }) {
-  const inkTone = tone === "ink";
+  // A photo background always needs light-on-dark text for legibility,
+  // regardless of what tone the page asked for.
+  const inkTone = tone === "ink" || Boolean(backgroundImage);
 
   return (
     <header
       className={cn(
-        "border-b",
+        "relative overflow-hidden border-b",
         inkTone
           ? "bg-[var(--color-brand-950)] text-[var(--color-brand-50)]"
           : "bg-[var(--color-surface-muted)]",
@@ -30,7 +34,18 @@ export function PageHeader({
           : "border-[var(--color-border)]",
       )}
     >
-      <Container className="py-20 lg:py-28">
+      {backgroundImage && (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={backgroundImage}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-brand-950)]/90 via-[var(--color-brand-950)]/60 to-transparent" />
+        </>
+      )}
+      <Container className="relative z-10 py-20 lg:py-28">
         <div
           className={cn(
             "max-w-3xl",

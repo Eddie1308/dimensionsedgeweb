@@ -28,6 +28,7 @@ export default async function ContactPage({
         eyebrow={t("contact.eyebrow")}
         title={t("contact.title")}
         subtitle={t("contact.subtitle")}
+        backgroundImage={settings.contactBanner}
       />
 
       <Section tone="default">

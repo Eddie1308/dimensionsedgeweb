@@ -11,6 +11,10 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { services } from "@/data/services";
 import type { Locale } from "@/i18n/routing";
+import { getSiteSettings } from "@/lib/content/siteSettings";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function ServicesIndexPage({
   params,
@@ -21,6 +25,7 @@ export default async function ServicesIndexPage({
   setRequestLocale(locale);
   const t = await getTranslations();
   const isAr = locale === "ar";
+  const settings = await getSiteSettings();
 
   return (
     <>
@@ -28,6 +33,7 @@ export default async function ServicesIndexPage({
         eyebrow={t("services.eyebrow")}
         title={t("services.indexTitle")}
         subtitle={t("services.indexSubtitle")}
+        backgroundImage={settings.servicesBanner}
       />
 
       <Section tone="default">

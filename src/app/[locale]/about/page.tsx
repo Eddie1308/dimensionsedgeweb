@@ -35,11 +35,11 @@ export default async function AboutPage({
     <>
       {/* ── Cinematic hero — Aramco style ── */}
       <div className="relative h-[55vh] min-h-[400px] overflow-hidden bg-[var(--color-brand-950)]">
-        {settings.heroBackground && (
+        {settings.aboutBanner && (
           <>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={settings.heroBackground}
+              src={settings.aboutBanner}
               alt={t("about.heroImageAlt")}
               className="absolute inset-0 h-full w-full object-cover object-top opacity-40"
             />
