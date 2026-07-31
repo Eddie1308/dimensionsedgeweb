@@ -1,23 +1,21 @@
 import {
   Network,
+  Cable,
   Speaker,
+  Workflow,
+  ShieldCheck,
   Camera,
-  Lock,
-  Megaphone,
-  Flame,
-  Building2,
   type LucideProps,
 } from "lucide-react";
 import type { ServiceContent } from "@/data/services";
 
 const iconMap: Record<ServiceContent["iconKey"], React.ComponentType<LucideProps>> = {
   network: Network,
+  cable: Cable,
   speaker: Speaker,
+  workflow: Workflow,
+  shield: ShieldCheck,
   camera: Camera,
-  lock: Lock,
-  megaphone: Megaphone,
-  flame: Flame,
-  building: Building2,
 };
 
 export function ServiceIcon({

@@ -10,12 +10,11 @@ import type { SiteSettings } from "@/lib/content/siteSettings";
 
 const serviceLinks = [
   { slug: "networking", key: "networking" },
+  { slug: "cabling", key: "cabling" },
   { slug: "audio-visual", key: "audioVisual" },
+  { slug: "erpnext", key: "erpnext" },
+  { slug: "cybersecurity", key: "cybersecurity" },
   { slug: "cctv", key: "cctv" },
-  { slug: "access-control", key: "accessControl" },
-  { slug: "pa-system", key: "paSystem" },
-  { slug: "fire-alarm", key: "fireAlarm" },
-  { slug: "building-automation", key: "buildingAutomation" },
 ];
 
 export function SiteFooterClient({

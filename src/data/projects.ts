@@ -27,14 +27,13 @@ export type Project = {
   year: number;
   // serviceSlug ties to src/data/services.ts — not enforced statically here
   // because in DB land the relation is by FK. The adapter layer can join.
-  serviceSlug:
+  serviceSlug?:
     | "networking"
+    | "cabling"
     | "audio-visual"
-    | "cctv"
-    | "access-control"
-    | "pa-system"
-    | "fire-alarm"
-    | "building-automation";
+    | "erpnext"
+    | "cybersecurity"
+    | "cctv";
   isFeatured: boolean;
   isVisible: boolean;
   order: number;
@@ -135,7 +134,7 @@ export const projects: Project[] = [
     locationEn: "Eastern Province",
     locationAr: "المنطقة الشرقية",
     year: 2024,
-    serviceSlug: "pa-system",
+    serviceSlug: "audio-visual",
     isFeatured: false,
     isVisible: true,
     order: 3,
@@ -161,7 +160,6 @@ export const projects: Project[] = [
     locationEn: "Jeddah",
     locationAr: "جدة",
     year: 2024,
-    serviceSlug: "building-automation",
     isFeatured: true,
     isVisible: true,
     order: 4,
@@ -187,7 +185,7 @@ export const projects: Project[] = [
     locationEn: "Riyadh",
     locationAr: "الرياض",
     year: 2025,
-    serviceSlug: "access-control",
+    serviceSlug: "cctv",
     isFeatured: false,
     isVisible: true,
     order: 5,
@@ -210,7 +208,6 @@ export const projects: Project[] = [
     locationEn: "Riyadh",
     locationAr: "الرياض",
     year: 2023,
-    serviceSlug: "fire-alarm",
     isFeatured: false,
     isVisible: true,
     order: 6,

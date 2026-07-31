@@ -1,12 +1,11 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import {
   Network,
+  Cable,
   Speaker,
+  Workflow,
+  ShieldCheck,
   Camera,
-  Lock,
-  Megaphone,
-  Flame,
-  Building2,
   ArrowRight,
   CheckCircle2,
   Shield,
@@ -32,12 +31,11 @@ export const revalidate = 0;
 
 const serviceCards = [
   { slug: "networking", key: "networking", Icon: Network },
+  { slug: "cabling", key: "cabling", Icon: Cable },
   { slug: "audio-visual", key: "audioVisual", Icon: Speaker },
+  { slug: "erpnext", key: "erpnext", Icon: Workflow },
+  { slug: "cybersecurity", key: "cybersecurity", Icon: ShieldCheck },
   { slug: "cctv", key: "cctv", Icon: Camera },
-  { slug: "access-control", key: "accessControl", Icon: Lock },
-  { slug: "pa-system", key: "paSystem", Icon: Megaphone },
-  { slug: "fire-alarm", key: "fireAlarm", Icon: Flame },
-  { slug: "building-automation", key: "buildingAutomation", Icon: Building2 },
 ];
 
 const whyUsIcons = [Shield, Wrench, CheckCircle2, Clock];

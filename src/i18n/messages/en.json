@@ -13,13 +13,13 @@
     "contact": "Contact"
   },
   "home": {
-    "heroEyebrow": "Low current · ICT · Building automation",
+    "heroEyebrow": "Low current · ICT · Systems integration",
     "heroTitle": "Engineered systems. Delivered with precision.",
-    "heroSubtitle": "Networking, AV, CCTV, access control, fire and building automation — designed, installed, and supported across the Kingdom.",
+    "heroSubtitle": "Networking, cabling, AV, ERP, cybersecurity, and CCTV & access control — designed, installed, and supported across the Kingdom.",
     "ctaPrimary": "Explore our services",
     "ctaSecondary": "View our work",
     "servicesEyebrow": "What we do",
-    "servicesTitle": "Seven disciplines, one integrated team",
+    "servicesTitle": "Six disciplines, one integrated team",
     "servicesSubtitle": "From the cabling under your floor to the screens on your wall, we engineer every layer in-house.",
     "whyEyebrow": "Why Dimensions Edge",
     "whyTitle": "Engineering you can rely on long after handover.",
@@ -87,7 +87,7 @@
   },
   "services": {
     "eyebrow": "Capabilities",
-    "indexTitle": "Seven disciplines under one roof",
+    "indexTitle": "Six disciplines under one roof",
     "indexSubtitle": "We engineer the low-voltage layer of your building — the cables, cameras, panels, and protocols that turn a structure into a system.",
     "explore": "Explore service",
     "capabilitiesHeading": "Capabilities",
@@ -95,13 +95,12 @@
     "talkHeading": "Specifying this for an upcoming project?",
     "talkBody": "Send us the brief — we will come back with a design and a budget within five working days.",
     "talkCta": "Start a conversation",
-    "networking": "Networking & Cabling",
-    "audioVisual": "Audio-Visual",
-    "cctv": "CCTV & Surveillance",
-    "accessControl": "Access Control",
-    "paSystem": "PA Systems",
-    "fireAlarm": "Fire Alarm",
-    "buildingAutomation": "Building Automation"
+    "networking": "ICT & Networking",
+    "cabling": "Structured Cabling",
+    "audioVisual": "Audio Visual",
+    "erpnext": "ERPNext",
+    "cybersecurity": "Cybersecurity",
+    "cctv": "CCTV & Access Control"
   },
   "contact": {
     "eyebrow": "Talk to us",

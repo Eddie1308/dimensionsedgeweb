@@ -16,80 +16,69 @@ const prisma = new PrismaClient({ adapter });
 const services = [
   {
     slug: "networking",
-    titleEn: "Networking & Structured Cabling",
-    titleAr: "الشبكات والكابلات المنظمة",
+    titleEn: "ICT & Networking",
+    titleAr: "الشبكات وتقنية المعلومات",
     summaryEn:
-      "Cat6/Cat6A/Fiber backbones, enterprise WiFi, and certified structured cabling for offices, hospitals, and campuses.",
+      "Enterprise WiFi, network design, and server sourcing that keeps every other system in the building talking to each other.",
     summaryAr:
-      "شبكات Cat6 و Cat6A والألياف البصرية وشبكات WiFi للمؤسسات وكابلات منظمة معتمدة للمكاتب والمستشفيات والمجمعات.",
+      "شبكات WiFi للمؤسسات وتصميم شبكات وتوريد خوادم يُبقي جميع الأنظمة في المبنى مترابطة.",
     iconKey: "network",
     order: 1,
   },
   {
-    slug: "audio-visual",
-    titleEn: "Audio-Visual Systems",
-    titleAr: "أنظمة الصوت والصورة",
+    slug: "cabling",
+    titleEn: "Structured Cabling",
+    titleAr: "الكابلات المنظمة",
     summaryEn:
-      "Conference rooms, auditoriums, and digital signage powered by itc — discussion systems, line arrays, and control.",
+      "A high-performing network starts with a solid foundation — precision structured cabling built for efficiency and long-term scalability.",
     summaryAr:
-      "قاعات المؤتمرات والقاعات الكبرى واللافتات الرقمية بدعم من itc — أنظمة المناقشة ومكبرات الصوت ووحدات التحكم.",
-    iconKey: "speaker",
+      "الشبكة عالية الأداء تبدأ بأساس متين — كابلات منظمة بدقة عالية لضمان الكفاءة وقابلية التوسّع طويلة الأمد.",
+    iconKey: "cable",
     order: 2,
   },
   {
-    slug: "cctv",
-    titleEn: "CCTV & Video Surveillance",
-    titleAr: "كاميرات المراقبة",
+    slug: "audio-visual",
+    titleEn: "Audio Visual",
+    titleAr: "أنظمة الصوت والصورة",
     summaryEn:
-      "Hikvision IP camera systems, NVR/VMS deployments, and AI-driven analytics for perimeter and indoor security.",
+      "Transform the way your business communicates — boardrooms, auditoriums, digital signage, and classrooms engineered for performance and reliability.",
     summaryAr:
-      "أنظمة كاميرات Hikvision IP وحلول NVR/VMS وتحليلات الذكاء الاصطناعي للأمان الداخلي والمحيطي.",
-    iconKey: "camera",
+      "غيّروا طريقة تواصل أعمالكم — قاعات اجتماعات وقاعات كبرى ولافتات رقمية وفصول دراسية مصمّمة للأداء والموثوقية.",
+    iconKey: "speaker",
     order: 3,
   },
   {
-    slug: "access-control",
-    titleEn: "Access Control",
-    titleAr: "أنظمة التحكم بالدخول",
+    slug: "erpnext",
+    titleEn: "ERPNext Implementation",
+    titleAr: "تطبيق ERPNext",
     summaryEn:
-      "Card, biometric, and mobile-credential access systems integrated with HR, visitor management, and time attendance.",
+      "Technology should simplify business, not complicate it — ERPNext tailored to your workflows, not the other way around.",
     summaryAr:
-      "أنظمة الدخول بالبطاقات والبصمة والهوية المحمولة المتكاملة مع الموارد البشرية وإدارة الزوار والحضور.",
-    iconKey: "lock",
+      "التقنية يجب أن تُبسّط الأعمال لا أن تُعقّدها — تطبيق ERPNext مصمّم حسب سير عملكم، لا العكس.",
+    iconKey: "workflow",
     order: 4,
   },
   {
-    slug: "pa-system",
-    titleEn: "Public Address Systems",
-    titleAr: "أنظمة النداء العام",
+    slug: "cybersecurity",
+    titleEn: "Cybersecurity",
+    titleAr: "الأمن السيبراني",
     summaryEn:
-      "EN54-certified voice evacuation, background music, and zoned PA for malls, mosques, and industrial sites.",
+      "Security is a business necessity, not an afterthought — protection built around your actual risk profile.",
     summaryAr:
-      "أنظمة الإخلاء الصوتي المعتمدة EN54 والموسيقى الخلفية والنداء العام المقسم للمولات والمساجد والمواقع الصناعية.",
-    iconKey: "megaphone",
+      "الأمن ضرورة للأعمال لا رفاهية إضافية — حماية مبنية على مستوى المخاطر الفعلي لديكم.",
+    iconKey: "shield",
     order: 5,
   },
   {
-    slug: "fire-alarm",
-    titleEn: "Fire Alarm Systems",
-    titleAr: "أنظمة إنذار الحريق",
+    slug: "cctv",
+    titleEn: "CCTV & Access Control",
+    titleAr: "المراقبة والتحكم بالدخول",
     summaryEn:
-      "Addressable detection, conventional panels, and integrated emergency response — Civil Defense compliant.",
+      "Security goes beyond surveillance — intelligent CCTV and access control ecosystems working together, not bolted on separately.",
     summaryAr:
-      "أنظمة الكشف العنواني واللوحات التقليدية والاستجابة المتكاملة للطوارئ — متوافقة مع الدفاع المدني.",
-    iconKey: "flame",
+      "الأمن لا يقتصر على المراقبة — أنظمة مراقبة وتحكم بالدخول ذكية تعمل معاً بدلاً من كونها أنظمة منفصلة.",
+    iconKey: "camera",
     order: 6,
-  },
-  {
-    slug: "building-automation",
-    titleEn: "Building Automation (BACS)",
-    titleAr: "أنظمة أتمتة المباني",
-    summaryEn:
-      "BACnet/Modbus integration of HVAC, lighting, and metering for efficient, observable smart buildings.",
-    summaryAr:
-      "تكامل BACnet/Modbus لأنظمة التكييف والإضاءة والقياس لمبانٍ ذكية فعّالة وقابلة للمراقبة.",
-    iconKey: "building",
-    order: 7,
   },
 ];
 
